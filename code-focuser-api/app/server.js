@@ -1,9 +1,9 @@
 const express = require("express");
 const { ApolloServer, gql } = require("apollo-server-express");
 
-const typeDefs = require('./schema');
+const typeDefs = require('./schemas');
 const resolvers = require('./resolvers');
-const models = require('./models');
+const models = require('../models');
 
 const port = 4000;
 

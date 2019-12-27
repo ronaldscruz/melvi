@@ -1,22 +1,9 @@
 const { gql } = require("apollo-server-express");
 
-const typeDefs = gql`
-  type User {
-    id: Int!
-    fullName: String!
-    dateOfBirth: String!
-    email: String!
-    password: String!
-  }
+const userType = require("./user");
+const roadmapType = require("./roadmap");
 
-  type Roadmap {
-    id: Int!
-    title: String!
-    description: String
-    icon: String
-    user: User!
-  }
-
+const rootSchema = gql`
   type Query {
     getUser(id: Int!): User!
     getAllUsers: [User!]!
@@ -28,7 +15,6 @@ const typeDefs = gql`
     createUser(fullName: String!, dateOfBirth: String!, email: String!, password: String!): User!
     createRoadmap(title: String!, description: String, icon: String, userId: Int!): Roadmap!
   }
-
 `;
 
-module.exports = typeDefs;
+module.exports = [ rootSchema, userType, roadmapType ];
