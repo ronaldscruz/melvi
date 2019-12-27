@@ -1,7 +1,7 @@
 # Code Focuser API goals
 
 ## Project stability
-~~ 🗂 Modularize GraphQL Schema and Resolvers ~~ <br>
+~~🗂 Modularize GraphQL Schema and Resolvers~~ <br>
 💅 Start using ESLint and Prettier <br>
 🗒 Understand the use of files like .yaml, .editorconfig, etc. <br>
 🔐 Improve Database rules (length, data types, etc.) <br>
