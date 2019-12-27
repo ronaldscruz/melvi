@@ -1,4 +1,10 @@
 const resolvers = {
+  Roadmap: {
+    async user(user) {
+      return user.getUser();
+    }
+  },
+
   Query: {
     async getUser(root, { id }, { models }) {
       return models.User.findByPk(id);
