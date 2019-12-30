@@ -1,17 +1,20 @@
 const express = require("express");
-const { ApolloServer, gql } = require("apollo-server-express");
+const { ApolloServer } = require("apollo-server-express");
 
-const typeDefs = require('./schemas');
-const resolvers = require('./resolvers');
+// Importing GraphQL and DB stuff (schemas, resolvers, models)
+const typeDefs = require('./graphql/schema');
+const resolver = require('./graphql/resolver');
 const models = require('../models');
 
 const port = 4000;
 
-const server = new ApolloServer({ typeDefs, resolvers, context: { models } });
+// Passing our GraphQL and DB stuff to ApolloServer
+const server = new ApolloServer({ typeDefs, resolver, context: { models } });
 
 const app = express();
 server.applyMiddleware({ app });
 
+// Syncing DB with Models
 models.sequelize.authenticate()
   .then(() => console.log("[DATABASE] Authenticated."))
   .catch(err => console.error("[DATABASE] Failed authenticating:", err));
