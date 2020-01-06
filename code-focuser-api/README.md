@@ -10,7 +10,7 @@
 
 ## Features
 
-🤖 Automatically import Schemas and Resolvers
+🤖 Automatically import Schemas and Resolvers <br>
 🔑 Login system with JWT <br>
 🖌 A complete CRUD of the entities: User, Roadmap, RoadmapStep <br>
 📷 Make a Profile Picture system (files management in Backend) <br>
