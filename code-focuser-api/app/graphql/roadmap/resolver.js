@@ -6,17 +6,33 @@ const roadmapResolver = {
   },
 
   Query: {
-    async getRoadmaps(root, { userId }, { models }) {
+    async getRoadmaps(root, {
+      userId
+    }, {
+      models
+    }) {
       return models.Roadmap.findAll({
-         where: { userId } 
+        where: {
+          userId
+        }
       });
     },
   },
 
   Mutation: {
-    async createRoadmap(root, { title, description, icon, userId }, { models }) {
+    async createRoadmap(root, {
+      title,
+      description,
+      icon,
+      userId
+    }, {
+      models
+    }) {
       return models.Roadmap.create({
-        title, description, icon, userId
+        title,
+        description,
+        icon,
+        userId
       });
     }
   },

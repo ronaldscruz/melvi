@@ -1,6 +1,8 @@
-const { gql } = require("apollo-server-express");
+const {
+  gql
+} = require("apollo-server-express");
 
-const roadmapType = gql`
+const roadmapType = gql `
   type Roadmap {
     id: Int!
     title: String!

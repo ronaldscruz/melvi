@@ -1,6 +1,8 @@
-const { gql } = require("apollo-server-express");
+const {
+  gql
+} = require("apollo-server-express");
 
-const userType = gql`
+const userType = gql `
   type User {
     id: Int!
     fullName: String!

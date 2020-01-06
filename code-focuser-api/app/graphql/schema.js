@@ -17,4 +17,4 @@ const rootSchema = gql`
   }
 `;
 
-module.exports = [ rootSchema, userType, roadmapType ];
+module.exports = [rootSchema, userType, roadmapType];

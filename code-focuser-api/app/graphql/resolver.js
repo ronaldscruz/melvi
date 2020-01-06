@@ -1,22 +1,14 @@
 const { merge } = require("lodash");
 
-const userResolver = require('./user/resolver');
-const roadmapResolver = require('./roadmap/resolver');
+const userResolver = require("./user/resolver");
+const roadmapResolver = require("./roadmap/resolver");
 
 const rootResolver = {
-  Query: {
+  Query: {},
 
-  },
+  Mutation: {}
+};
 
-  Mutation: {
-
-  },
-}
-
-const resolvers = merge(
-  rootResolver,
-  userResolver,
-  roadmapResolver,
-);
+const resolvers = merge(rootResolver, userResolver, roadmapResolver);
 
 module.exports = resolvers;
