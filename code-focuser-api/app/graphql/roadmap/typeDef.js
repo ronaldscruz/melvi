@@ -2,7 +2,7 @@ const { gql } = require("apollo-server-express");
 
 const roadmapType = gql`
   type Roadmap {
-    id: Int!
+    id: ID!
     title: String!
     description: String
     icon: String

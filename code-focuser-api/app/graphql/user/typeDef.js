@@ -2,7 +2,7 @@ const { gql } = require("apollo-server-express");
 
 const userType = gql`
   type User {
-    id: Int!
+    id: ID!
     fullName: String!
     dateOfBirth: String!
     email: String!

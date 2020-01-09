@@ -3,13 +3,13 @@ const { ApolloServer } = require("apollo-server-express");
 
 // Importing GraphQL and DB stuff (typeDefs, resolvers, models)
 const typeDefs = require("./graphql/typeDef");
-const resolver = require("./graphql/resolver");
+const resolvers = require("./graphql/resolvers");
 const models = require("../models");
 
-const port = 4000;
+const port = 4321;
 
 // Passing our GraphQL and DB stuff to ApolloServer
-const server = new ApolloServer({ typeDefs, resolver, context: { models } });
+const server = new ApolloServer({ typeDefs, resolvers, context: { models } });
 
 const app = express();
 server.applyMiddleware({ app });
