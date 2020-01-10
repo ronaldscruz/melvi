@@ -10,7 +10,9 @@ module.exports = {
       },
       fullName: {
         type: Sequelize.STRING,
-        len: [2, 120]
+        validate: {
+          len: [2, 120]
+        }
       },
       dateOfBirth: {
         type: Sequelize.DATE,
@@ -26,7 +28,9 @@ module.exports = {
       },
       password: {
         type: Sequelize.STRING,
-        len: [6, 24]
+        validate: {
+          len: [6, 24]
+        }
       },
       createdAt: {
         allowNull: false,
