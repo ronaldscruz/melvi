@@ -5,8 +5,12 @@ module.exports = (sequelize, DataTypes) => {
     {
       title: {
         type: DataTypes.STRING,
+        allowNull: false,
         validate: {
-          len: [2, 70]
+          len: {
+            msg: "Your title reached the character limit (70).",
+            args: [1, 70]
+          }
         }
       },
       description: {

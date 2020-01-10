@@ -6,7 +6,10 @@ module.exports = (sequelize, DataTypes) => {
       fullName: {
         type: DataTypes.STRING,
         validate: {
-          len: [2, 120]
+          len: {
+            msg: "Your name should have at least 2 characters.",
+            args: [2, 120]
+          }
         }
       },
       dateOfBirth: {
@@ -18,13 +21,19 @@ module.exports = (sequelize, DataTypes) => {
       email: {
         type: DataTypes.STRING,
         validate: {
-          isEmail: true
+          isEmail: {
+            msg: "Please enter a valid e-mail",
+            args: true
+          }
         }
       },
       password: {
         type: DataTypes.STRING,
         validate: {
-          len: [6, 24]
+          len: {
+            msg: "Your password should have a length between 6 and 24 characters",
+            args: [6, 24]
+          }
         }
       }
     },

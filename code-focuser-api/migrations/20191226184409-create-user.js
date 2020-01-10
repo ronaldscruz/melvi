@@ -9,28 +9,16 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       fullName: {
-        type: Sequelize.STRING,
-        validate: {
-          len: [2, 120]
-        }
+        type: Sequelize.STRING
       },
       dateOfBirth: {
-        type: Sequelize.DATE,
-        validate: {
-          isBefore: Sequelize.fn("now")
-        }
+        type: Sequelize.DATE
       },
       email: {
-        type: Sequelize.STRING,
-        validate: {
-          isEmail: true
-        }
+        type: Sequelize.STRING
       },
       password: {
-        type: Sequelize.STRING,
-        validate: {
-          len: [6, 24]
-        }
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
