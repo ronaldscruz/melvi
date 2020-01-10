@@ -3,10 +3,20 @@ module.exports = (sequelize, DataTypes) => {
   const Roadmap = sequelize.define(
     "Roadmap",
     {
-      title: DataTypes.STRING,
-      description: DataTypes.STRING,
-      icon: DataTypes.STRING,
-      userId: DataTypes.INTEGER
+      title: {
+        type: DataTypes.STRING,
+        len: [2, 70]
+      },
+      description: {
+        type: DataTypes.STRING
+      },
+      icon: {
+        type: DataTypes.STRING
+      },
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      }
     },
     {}
   );
