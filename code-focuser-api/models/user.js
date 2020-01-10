@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       dateOfBirth: {
         type: DataTypes.DATE,
         validate: {
-          isBefore: DataTypes.fn("now")
+          isBefore: DataTypes.NOW
         }
       },
       email: {
