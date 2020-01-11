@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   RoadmapStep.associate = function(models) {
-    RoadmapStep.belongsTo(models.Roadmap, { foreignKey: "roadmapid" });
+    RoadmapStep.belongsTo(models.Roadmap, { foreignKey: "roadmapId" });
   };
   return RoadmapStep;
 };

@@ -1,7 +1,6 @@
 const roadmapStepResolver = {
   RoadmapStep: {
     async roadmap(roadmap) {
-      console.log(roadmap);
       return roadmap.getRoadmap();
     }
   },

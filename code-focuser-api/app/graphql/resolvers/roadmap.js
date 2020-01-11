@@ -1,7 +1,6 @@
 const roadmapResolver = {
   Roadmap: {
     async user(user) {
-      console.log(user);
       return user.getUser();
     }
   },

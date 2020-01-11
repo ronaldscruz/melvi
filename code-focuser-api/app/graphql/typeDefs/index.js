@@ -1,8 +1,8 @@
 const { gql } = require("apollo-server-express");
 
-const userType = require("./user/typeDef");
-const roadmapType = require("./roadmap/typeDef");
-const roadmapStepType = require("./roadmapStep/typeDef");
+const userType = require("./user");
+const roadmapType = require("./roadmap");
+const roadmapStepType = require("./roadmapStep");
 
 const rootSchema = gql`
   type Query {

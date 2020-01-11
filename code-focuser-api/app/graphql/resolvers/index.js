@@ -1,8 +1,8 @@
 const { merge } = require("lodash");
 
-const userResolver = require("./user/resolver");
-const roadmapResolver = require("./roadmap/resolver");
-const roadmapStepResolver = require("./roadmapStep/resolver");
+const userResolver = require("./user");
+const roadmapResolver = require("./roadmap");
+const roadmapStepResolver = require("./roadmapStep");
 
 const rootResolver = {
   Query: {},

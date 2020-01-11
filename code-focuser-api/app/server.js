@@ -1,8 +1,9 @@
+/* eslint-disable no-console */
 const express = require("express");
 const { ApolloServer } = require("apollo-server-express");
 
 // Importing GraphQL and DB stuff (typeDefs, resolvers, models)
-const typeDefs = require("./graphql/typeDef");
+const typeDefs = require("./graphql/typeDefs");
 const resolvers = require("./graphql/resolvers");
 const models = require("../models");
 
