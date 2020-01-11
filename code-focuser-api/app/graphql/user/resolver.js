@@ -4,7 +4,7 @@ const userResolver = {
       return models.User.findByPk(id);
     },
 
-    async getAllUsers(root, args, { models }) {
+    async getUsers(root, args, { models }) {
       return models.User.findAll();
     }
   },

@@ -1,6 +1,6 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("Roadmaps", {
+    return queryInterface.createTable("RoadmapSteps", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -11,15 +11,19 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      description: {
-        type: Sequelize.STRING
+      body: {
+        type: Sequelize.TEXT
       },
       icon: {
         type: Sequelize.STRING
       },
-      userId: {
+      roadmapId: {
         type: Sequelize.INTEGER,
         allowNull: false
+      },
+      done: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       createdAt: {
         allowNull: false,
@@ -34,6 +38,6 @@ module.exports = {
     });
   },
   down: queryInterface => {
-    return queryInterface.dropTable("Roadmaps");
+    return queryInterface.dropTable("RoadmapSteps");
   }
 };
