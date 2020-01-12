@@ -1,8 +1,5 @@
 const { gql } = require("apollo-server-express");
-
-const userType = require("./user");
-const roadmapType = require("./roadmap");
-const roadmapStepType = require("./roadmapStep");
+const requireSiblings = require("../../utils/filesUtils");
 
 const rootSchema = gql`
   type Query {
@@ -40,4 +37,6 @@ const rootSchema = gql`
   }
 `;
 
-module.exports = [rootSchema, userType, roadmapType, roadmapStepType];
+const addedTypes = requireSiblings(__dirname);
+
+module.exports = [rootSchema, ...addedTypes];

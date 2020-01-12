@@ -1,8 +1,5 @@
 const { merge } = require("lodash");
-
-const userResolver = require("./user");
-const roadmapResolver = require("./roadmap");
-const roadmapStepResolver = require("./roadmapStep");
+const requireSiblings = require("../../utils/filesUtils");
 
 const rootResolver = {
   Query: {},
@@ -10,6 +7,7 @@ const rootResolver = {
   Mutation: {}
 };
 
-const resolvers = merge(rootResolver, userResolver, roadmapResolver, roadmapStepResolver);
+const addedResolvers = requireSiblings(__dirname);
+const resolvers = merge(rootResolver, ...addedResolvers);
 
 module.exports = resolvers;
