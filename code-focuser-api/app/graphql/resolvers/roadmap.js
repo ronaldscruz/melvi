@@ -27,6 +27,24 @@ const roadmapResolver = {
         icon,
         userId
       });
+    },
+
+    async updateRoadmap(root, data, { models }) {
+      const { id, title, description, icon, userId } = data;
+      return models.Roadmap.update(
+        {
+          title,
+          description,
+          icon,
+          userId,
+          updatedAt: Date.now()
+        },
+        { where: { id } }
+      );
+    },
+
+    async deleteRoadmap(root, { id }, { models }) {
+      return models.Roadmap.destroy({ where: { id } });
     }
   }
 };

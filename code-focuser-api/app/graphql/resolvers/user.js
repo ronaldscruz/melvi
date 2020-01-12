@@ -28,6 +28,25 @@ const userResolver = {
         password,
         permissionId
       });
+    },
+
+    async updateUser(root, data, { models }) {
+      const { id, fullName, dateOfBirth, email, password, permissionId } = data;
+      return models.User.update(
+        {
+          fullName,
+          dateOfBirth,
+          email,
+          password,
+          permissionId,
+          updatedAt: Date.now()
+        },
+        { where: { id } }
+      );
+    },
+
+    async deleteUser(root, { id }, { models }) {
+      return models.User.destroy({ where: { id } });
     }
   }
 };

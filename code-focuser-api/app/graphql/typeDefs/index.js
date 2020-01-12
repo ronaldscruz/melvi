@@ -16,6 +16,7 @@ const rootSchema = gql`
   }
 
   type Mutation {
+    # USER
     createUser(
       fullName: String!
       dateOfBirth: String!
@@ -24,8 +25,23 @@ const rootSchema = gql`
       permissionId: Int!
     ): User!
 
-    createPermission(name: String!): Permission!
+    updateUser(
+      id: Int!
+      fullName: String
+      dateOfBirth: String
+      email: String
+      password: String
+      permissionId: Int
+    ): User!
 
+    deleteUser(id: Int!): User!
+
+    # PERMISSION
+    createPermission(name: String!): Permission!
+    updatePermission(id: Int!, name: String): Permission!
+    deletePermission(id: Int!): Permission!
+
+    # ROADMAP
     createRoadmap(
       title: String!
       description: String
@@ -33,6 +49,17 @@ const rootSchema = gql`
       userId: Int!
     ): Roadmap!
 
+    updateRoadmap(
+      id: Int!
+      title: String
+      description: String
+      icon: String
+      userId: Int
+    ): Roadmap!
+
+    deleteRoadmap(id: Int!): Roadmap!
+
+    # ROADMAPSTEP
     createRoadmapStep(
       title: String!
       body: String
@@ -40,6 +67,17 @@ const rootSchema = gql`
       roadmapId: Int!
       done: Boolean
     ): RoadmapStep!
+
+    updateRoadmapStep(
+      id: Int!
+      title: String
+      body: String
+      icon: String
+      roadmapId: Int
+      done: Boolean
+    ): RoadmapStep!
+
+    deleteRoadmapStep(id: Int!): RoadmapStep!
   }
 `;
 
