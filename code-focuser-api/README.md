@@ -11,7 +11,7 @@
 ## Features
 
 ~~🤖 Automatically import TypeDefs and Resolvers~~ <br>
-🔑 Login system with JWT <br>
+🔑 Login system with JWT and Passport <br>
 🖌 A complete CRUD of the entities: User, Roadmap, RoadmapStep <br>
 📷 Make a Profile Picture system (files management in Backend) <br>
 <br>

@@ -4,7 +4,7 @@ const glob = require("glob");
 const path = require("path");
 
 /**
- * Use it inside "index.js" to require all other files on your folder
+ * Use it inside "index.js" to require all "sibling" files on your folder
  *
  * @param {String} dirname Literally the "__dirname" var
  */
