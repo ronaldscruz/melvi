@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-  const Permissions = sequelize.define(
-    "Permissions",
+  const Permission = sequelize.define(
+    "Permission",
     {
       name: {
         type: DataTypes.STRING,
@@ -14,8 +14,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-  Permissions.associate = function(models) {
-    Permissions.belongsTo(models.User({ foreignKey: "permissionLevel" }));
-  };
-  return Permissions;
+  Permission.associate = function() {};
+  return Permission;
 };

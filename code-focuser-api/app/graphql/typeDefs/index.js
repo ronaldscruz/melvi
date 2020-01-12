@@ -6,6 +6,9 @@ const rootSchema = gql`
     getUser(id: Int!): User!
     getUsers: [User!]!
 
+    getPermission(id: Int!): Permission!
+    getPermissions: [Permission!]!
+
     getRoadmaps(userId: Int!): [Roadmap!]!
     getRoadmap(id: Int!): Roadmap!
 
@@ -18,7 +21,10 @@ const rootSchema = gql`
       dateOfBirth: String!
       email: String!
       password: String!
+      permissionId: Int!
     ): User!
+
+    createPermission(name: String!): Permission!
 
     createRoadmap(
       title: String!

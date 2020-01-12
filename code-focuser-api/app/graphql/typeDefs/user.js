@@ -7,6 +7,7 @@ const userType = gql`
     dateOfBirth: String!
     email: String!
     password: String!
+    permission: Permission!
   }
 `;
 

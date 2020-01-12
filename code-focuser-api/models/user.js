@@ -1,4 +1,3 @@
-"use strict";
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     "User",
@@ -33,12 +32,14 @@ module.exports = (sequelize, DataTypes) => {
           }
         }
       },
-      permissionLevel: {
+      permissionId: {
         type: DataTypes.INTEGER
       }
     },
     {}
   );
-  User.associate = function() {};
+  User.associate = function(models) {
+    User.belongsTo(models.Permission, { foreignKey: "permissionId" });
+  };
   return User;
 };

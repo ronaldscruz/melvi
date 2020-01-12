@@ -23,7 +23,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      permissionLevel: {
+      permissionId: {
         type: Sequelize.INTEGER,
         allowNull: false
       },

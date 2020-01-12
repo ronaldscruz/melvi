@@ -7,7 +7,7 @@ const typeDefs = require("./graphql/typeDefs");
 const resolvers = require("./graphql/resolvers");
 const models = require("../models");
 
-const port = 4002;
+const port = 4500;
 
 // Passing our GraphQL and DB stuff to ApolloServer
 const server = new ApolloServer({ typeDefs, resolvers, context: { models } });

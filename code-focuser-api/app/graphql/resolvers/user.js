@@ -1,4 +1,10 @@
 const userResolver = {
+  User: {
+    async permission(permission) {
+      return permission.getPermission();
+    }
+  },
+
   Query: {
     async getUser(root, { id }, { models }) {
       return models.User.findByPk(id);
@@ -10,12 +16,17 @@ const userResolver = {
   },
 
   Mutation: {
-    async createUser(root, { fullName, dateOfBirth, email, password }, { models }) {
+    async createUser(
+      root,
+      { fullName, dateOfBirth, email, password, permissionId },
+      { models }
+    ) {
       return models.User.create({
         fullName,
         dateOfBirth,
         email,
-        password
+        password,
+        permissionId
       });
     }
   }
