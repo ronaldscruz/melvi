@@ -13,10 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
       dateOfBirth: {
-        type: DataTypes.DATE,
-        validate: {
-          isBefore: DataTypes.NOW
-        }
+        type: DataTypes.DATE
       },
       email: {
         type: DataTypes.STRING,
@@ -35,12 +32,13 @@ module.exports = (sequelize, DataTypes) => {
             args: [6, 24]
           }
         }
+      },
+      permissionLevel: {
+        type: DataTypes.INTEGER
       }
     },
     {}
   );
-  User.associate = function(models) {
-    // associations can be defined here
-  };
+  User.associate = function() {};
   return User;
 };
