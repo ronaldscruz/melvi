@@ -11,11 +11,13 @@
 ## Features
 
 ~~🤖 Automatically import TypeDefs and Resolvers~~ <br>
-🕹️ Start using controllers <br>
+
+> 🕹️ Start using controllers <br>
+
 ~~🎫 Add permissions~~ <br>
 🌳 Start using Git Flow <br>
 🔑 Login system with JWT and Passport <br>
-🖌 A complete CRUD of the entities: User, Roadmap, RoadmapStep <br>
+🖌 A complete CRUD of all entities <br>
 📷 Make a Profile Picture system (files management in Backend) <br>
 <br>
 

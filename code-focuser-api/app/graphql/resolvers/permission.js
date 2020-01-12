@@ -16,11 +16,18 @@ const permissionResolver = {
 
     async updatePermission(root, data, { models }) {
       const { id, name } = data;
-      return models.Permission.update({ name, updatedAt: Date.now() }, { where: { id } });
+
+      await models.Permission.update({ name, updatedAt: Date.now() }, { where: { id } });
+
+      return models.Permission.findByPk(id);
     },
 
     async deletePermission(root, { id }, { models }) {
-      return models.Permission.destroy({ where: { id } });
+      const deleted = await models.Permission.findByPk(id);
+
+      await models.Permission.destroy({ where: { id } });
+
+      return deleted;
     }
   }
 };

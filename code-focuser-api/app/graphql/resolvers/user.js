@@ -32,21 +32,21 @@ const userResolver = {
 
     async updateUser(root, data, { models }) {
       const { id, fullName, dateOfBirth, email, password, permissionId } = data;
-      return models.User.update(
-        {
-          fullName,
-          dateOfBirth,
-          email,
-          password,
-          permissionId,
-          updatedAt: Date.now()
-        },
+
+      await models.User.update(
+        { fullName, dateOfBirth, email, password, permissionId, updatedAt: Date.now() },
         { where: { id } }
       );
+
+      return models.User.findByPk(id);
     },
 
     async deleteUser(root, { id }, { models }) {
-      return models.User.destroy({ where: { id } });
+      const deleted = await models.User.findByPk(id);
+
+      await models.User.destroy({ where: { id } });
+
+      return deleted;
     }
   }
 };

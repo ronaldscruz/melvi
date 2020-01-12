@@ -31,20 +31,21 @@ const roadmapResolver = {
 
     async updateRoadmap(root, data, { models }) {
       const { id, title, description, icon, userId } = data;
-      return models.Roadmap.update(
-        {
-          title,
-          description,
-          icon,
-          userId,
-          updatedAt: Date.now()
-        },
+
+      await models.Roadmap.update(
+        { title, description, icon, userId, updatedAt: Date.now() },
         { where: { id } }
       );
+
+      return models.Roadmap.findByPk(id);
     },
 
     async deleteRoadmap(root, { id }, { models }) {
-      return models.Roadmap.destroy({ where: { id } });
+      const deleted = await models.Roadmap.findByPk(id);
+
+      await models.Roadmap.destroy({ where: { id } });
+
+      return deleted;
     }
   }
 };

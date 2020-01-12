@@ -28,20 +28,20 @@ const roadmapStepResolver = {
     async updateRoadmapStep(root, data, { models }) {
       const { id, title, body, icon, roadmapId } = data;
 
-      return models.RoadmapStep.update(
-        {
-          title,
-          body,
-          icon,
-          roadmapId,
-          updatedAt: Date.now()
-        },
+      await models.RoadmapStep.update(
+        { title, body, icon, roadmapId, updatedAt: Date.now() },
         { where: { id } }
       );
+
+      return models.RoadmapStep.findByPk(id);
     },
 
     async deleteRoadmapStep(root, { id }, { models }) {
-      return models.RoadmapStep.destroy({ where: { id } });
+      const deleted = await models.RoadmapStep.findByPk(id);
+
+      await models.RoadmapStep.destroy({ where: { id } });
+
+      return deleted;
     }
   }
 };
