@@ -1,14 +1,14 @@
 {
-  "name": "code-focuser-api",
+  "name": "melvi-api",
   "version": "1.0.0",
-  "description": "The Backend of Code Focuser.",
+  "description": "The Backend of Melvi.",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon ./app/server.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ronaldscruz/code-focuser"
+    "url": "https://github.com/ronaldscruz/melvi"
   },
   "author": "ronaldscruz",
   "license": "ISC",

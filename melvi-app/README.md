@@ -1,4 +1,4 @@
-# Code Focuser App goals
+# Melvi App goals
 
 ## Getting Started
 

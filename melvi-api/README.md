@@ -1,4 +1,4 @@
-# Code Focuser API goals
+# Melvi API goals
 
 ## Project stability
 

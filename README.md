@@ -1,5 +1,6 @@
-# Code Focuser
-An app for programmers that use to play games. It helps them managing their free time to be able to study and have fun. In Code Focuser you will be able to set study roadmaps and track your progress!
+# Melvi
+
+An app for programmers that use to play games. It helps them managing their free time to be able to study and have fun. In Melvi you will be able to set study roadmaps and track your progress!
 
 ### 📰 Detailed roadmap steps
 
