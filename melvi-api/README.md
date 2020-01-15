@@ -6,6 +6,7 @@
 ~~💅 Start using ESLint and Prettier~~ <br>
 ~~🗒 Understand the usage of files like .yaml, .editorconfig, etc.~~ <br>
 ~~🔐 Improve Database rules (length, data types, etc.)~~ <br>
+🚚 Move models to `app/` and start inserting business rules inside models <br>
 <br>
 
 ## Features
