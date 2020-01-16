@@ -7,10 +7,20 @@ const typeDefs = require("./graphql/typeDefs");
 const resolvers = require("./graphql/resolvers");
 const models = require("./models");
 
-const port = 4500;
+const port = process.env.SERVER_PORT;
 
 // Passing our GraphQL and DB stuff to ApolloServer
-const server = new ApolloServer({ typeDefs, resolvers, context: { models } });
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: ({ req }) => {
+    // console.log(req.headers);
+
+    // let authenticatedUser;
+
+    return { req, models };
+  }
+});
 
 const app = express();
 server.applyMiddleware({ app });
