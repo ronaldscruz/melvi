@@ -7,7 +7,8 @@
 ~~🗒 Understand the usage of files like .yaml, .editorconfig, etc.~~ <br>
 ~~🔐 Improve Database rules (length, data types, etc.)~~ <br>
 ~~🚚 Move models to `app/` and start inserting business rules inside models~~ <br>
-👷 Improve Sequelize standards (models, configs, etc.) <br>
+👷 Improve Sequelize and project standards (models, controllers, configs, etc.) <br>
+🐛 Throw GraphQL errors <br>
 👨 Start using GraphQL inheritance <br>
 <br>
 
