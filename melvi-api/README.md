@@ -19,8 +19,8 @@
 
 ~~🎫 Add permissions~~ <br>
 🌳 Start using Git Flow <br>
-🔑 Login system with password encryption<br>
-🖌 A complete CRUD of all entities <br>
+~~🔑 Login system with password encryption~~<br>
+~~🖌 A complete CRUD of all entities~~ <br>
 📷 Make a Profile Picture system (files management in Backend) <br>
 <br>
 
