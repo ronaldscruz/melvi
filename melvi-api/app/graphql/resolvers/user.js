@@ -13,7 +13,8 @@ const userResolver = {
       return models.User.findByPk(id);
     },
 
-    async getUsers(root, args, { models }) {
+    async getUsers(root, args, { models, session }) {
+      console.log("Session found: ", session);
       return models.User.findAll();
     }
   },
@@ -22,15 +23,34 @@ const userResolver = {
     async login(root, { email, password }, { models }) {
       let token = "";
 
-      const validUser = await models.User.findOne({ where: { email } });
+      const validUser = await models.User.findOne({
+        where: { email },
+        include: [{ model: models.Permission }]
+      });
+
       if (!validUser) return token;
 
       const isPasswordValid = await bcrypt.compare(password, validUser.password);
 
       if (isPasswordValid) {
-        token = jwt.sign({ user: validUser }, process.env.JWT_SECRET, {
-          expiresIn: 3600
-        });
+        const {
+          id,
+          fullName,
+          dateOfBirth,
+          Permission: permission,
+          createdAt,
+          updatedAt
+        } = validUser;
+
+        token = jwt.sign(
+          {
+            user: { id, fullName, dateOfBirth, email, permission, createdAt, updatedAt }
+          },
+          process.env.JWT_SECRET,
+          {
+            expiresIn: 3600
+          }
+        );
       }
 
       return token;

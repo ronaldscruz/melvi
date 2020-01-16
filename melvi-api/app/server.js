@@ -2,6 +2,9 @@
 const express = require("express");
 const { ApolloServer } = require("apollo-server-express");
 
+// Misc libs
+const jwt = require("jsonwebtoken");
+
 // Importing GraphQL and DB stuff (typeDefs, resolvers, models)
 const typeDefs = require("./graphql/typeDefs");
 const resolvers = require("./graphql/resolvers");
@@ -13,14 +16,15 @@ const port = process.env.SERVER_PORT;
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: ({ req }) => {
-    const authToken = req.headers.authorization;
+  context: async ({ req }) => {
+    if (req.headers.authorization) {
+      const authToken = req.headers.authorization;
+      const session = await jwt.verify(authToken, process.env.JWT_SECRET);
 
-    // if(authToken) currentUser = await
+      return { session, models };
+    }
 
-    // let authenticatedUser;
-
-    return { req, models };
+    return { models };
   }
 });
 
