@@ -14,7 +14,9 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: ({ req }) => {
-    // console.log(req.headers);
+    const authToken = req.headers.authorization;
+
+    // if(authToken) currentUser = await
 
     // let authenticatedUser;
 

@@ -1,3 +1,6 @@
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+
 const userResolver = {
   User: {
     async permission(permission) {
@@ -16,18 +19,41 @@ const userResolver = {
   },
 
   Mutation: {
+    async login(root, { email, password }, { models }) {
+      let token = "";
+
+      const validUser = await models.User.findOne({ where: { email } });
+      if (!validUser) return { token };
+
+      const isPasswordValid = await bcrypt.compare(password, validUser.password);
+
+      if (isPasswordValid) {
+        token = jwt.sign({ user: validUser }, process.env.JWT_SECRET, {
+          expiresIn: 3600
+        });
+      }
+
+      return { token };
+    },
+
     async createUser(
       root,
       { fullName, dateOfBirth, email, password, permissionId },
       { models }
     ) {
-      return models.User.create({
-        fullName,
-        dateOfBirth,
-        email,
-        password,
-        permissionId
-      });
+      const encryptedPassword = await bcrypt.hash(password, 10);
+
+      if (encryptedPassword) {
+        return models.User.create({
+          fullName,
+          dateOfBirth,
+          email,
+          password: encryptedPassword,
+          permissionId
+        });
+      }
+
+      return false;
     },
 
     async updateUser(root, data, { models }) {

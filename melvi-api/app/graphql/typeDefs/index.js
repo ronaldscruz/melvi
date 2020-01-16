@@ -23,7 +23,7 @@ const rootSchema = gql`
       email: String!
       password: String!
       permissionId: Int!
-    ): User!
+    ): User
 
     updateUser(
       id: Int!
@@ -35,6 +35,8 @@ const rootSchema = gql`
     ): User!
 
     deleteUser(id: Int!): User!
+
+    login(email: String!, password: String!): Auth!
 
     # PERMISSION
     createPermission(name: String!): Permission!
