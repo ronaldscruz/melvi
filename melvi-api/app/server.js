@@ -5,7 +5,7 @@ const { ApolloServer } = require("apollo-server-express");
 // Importing GraphQL and DB stuff (typeDefs, resolvers, models)
 const typeDefs = require("./graphql/typeDefs");
 const resolvers = require("./graphql/resolvers");
-const models = require("../models");
+const models = require("./models");
 
 const port = 4500;
 
