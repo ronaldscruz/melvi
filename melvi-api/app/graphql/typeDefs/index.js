@@ -36,7 +36,7 @@ const rootSchema = gql`
 
     deleteUser(id: Int!): User!
 
-    login(email: String!, password: String!): Auth!
+    login(email: String!, password: String!): String!
 
     # PERMISSION
     createPermission(name: String!): Permission!

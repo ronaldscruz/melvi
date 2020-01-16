@@ -23,7 +23,7 @@ const userResolver = {
       let token = "";
 
       const validUser = await models.User.findOne({ where: { email } });
-      if (!validUser) return { token };
+      if (!validUser) return token;
 
       const isPasswordValid = await bcrypt.compare(password, validUser.password);
 
@@ -33,7 +33,7 @@ const userResolver = {
         });
       }
 
-      return { token };
+      return token;
     },
 
     async createUser(
