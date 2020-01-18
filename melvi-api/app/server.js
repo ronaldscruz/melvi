@@ -19,11 +19,18 @@ const server = new ApolloServer({
   context: async ({ req }) => {
     if (req.headers.authorization) {
       const authToken = req.headers.authorization;
-      const session = await jwt.verify(authToken, process.env.JWT_SECRET);
-      return { session, models };
+      let session = {};
+
+      try {
+        session = await jwt.verify(authToken, process.env.JWT_SECRET);
+      } catch (err) {
+        throw new Error("Failed retrieving token data (malformed token).", err);
+      }
+
+      return { session };
     }
 
-    return { models };
+    return {};
   }
 });
 
