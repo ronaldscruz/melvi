@@ -1,34 +1,21 @@
+const Permission = require("../../controllers/permission");
+
 const permissionResolver = {
   Query: {
-    async getPermission(root, { id }, { models }) {
-      return models.Permission.findByPk(id);
-    },
+    getPermissions: () => Permission.getPermissions(),
 
-    async getPermissions(root, args, { models }) {
-      return models.Permission.findAll();
-    }
+    getPermission: (root, { id }) => Permission.getPermission(id)
   },
 
   Mutation: {
-    async createPermission(root, { name }, { models }) {
-      return models.Permission.create({ name });
-    },
+    createPermission: (root, { name }, { session }) =>
+      Permission.createPermission({ name }, session),
 
-    async updatePermission(root, data, { models }) {
-      const { id, name } = data;
+    updatePermission: (root, data, { session }) =>
+      Permission.updatePermission(data, session),
 
-      await models.Permission.update({ name, updatedAt: Date.now() }, { where: { id } });
-
-      return models.Permission.findByPk(id);
-    },
-
-    async deletePermission(root, { id }, { models }) {
-      const deleted = await models.Permission.findByPk(id);
-
-      await models.Permission.destroy({ where: { id } });
-
-      return deleted;
-    }
+    deletePermission: (root, { id }, { session }) =>
+      Permission.deletePermission(id, session)
   }
 };
 

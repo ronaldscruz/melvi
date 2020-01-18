@@ -20,7 +20,6 @@ const server = new ApolloServer({
     if (req.headers.authorization) {
       const authToken = req.headers.authorization;
       const session = await jwt.verify(authToken, process.env.JWT_SECRET);
-
       return { session, models };
     }
 

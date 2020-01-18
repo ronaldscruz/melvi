@@ -3,6 +3,7 @@
   "plugins": ["prettier"],
   "rules": {
     "prettier/prettier": ["error"],
-    "func-names": ["off"]
+    "func-names": ["off"],
+    "class-methods-use-this": ["off"]
   }
 }
