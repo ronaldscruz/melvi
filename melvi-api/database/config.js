@@ -1,7 +1,7 @@
 require("dotenv").config();
 
 const operatorsAliases = false;
-const dialect = "mysql";
+const dialect = "postgres";
 
 module.exports = {
   development: {
