@@ -23,7 +23,7 @@ const rootSchema = gql`
       email: String!
       password: String!
       permissionId: Int!
-    ): User
+    ): User!
 
     updateUser(
       id: Int!

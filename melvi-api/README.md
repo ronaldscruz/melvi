@@ -8,7 +8,7 @@
 ~~🔐 Improve Database rules (length, data types, etc.)~~ <br>
 ~~🚚 Move models to `app/` and start inserting business rules inside models~~ <br>
 👷 Improve Sequelize and project standards (models, controllers, configs, etc.) <br>
-🐛 Throw GraphQL errors <br>
+~~🐛 Throw GraphQL errors~~ <br>
 👨 Start using GraphQL inheritance <br>
 <br>
 
