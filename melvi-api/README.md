@@ -10,6 +10,7 @@
 👷 Improve Sequelize and project standards (models, controllers, configs, etc.) <br>
 ~~🐛 Throw GraphQL errors~~ <br>
 👨 Start using GraphQL inheritance <br>
+📦 Add Docker instructions to project <br>
 <br>
 
 ## Features
