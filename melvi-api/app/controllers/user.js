@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const { jwtSecret } = require("../../config/auth");
 
 const { User, Permission } = require("../models");
 
@@ -29,7 +30,7 @@ class UserController {
       {
         user: { id, fullName, dateOfBirth, email, permission, createdAt, updatedAt }
       },
-      process.env.JWT_SECRET,
+      jwtSecret,
       {
         expiresIn: 3600
       }
