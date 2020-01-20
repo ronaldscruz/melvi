@@ -1,6 +1,6 @@
 # Melvi
 
-An app for programmers that use to play games. It helps them managing their free time to be able to study and have fun. In Melvi you will be able to set study roadmaps and track your progress!
+An app for programmers that helps them organizing content to study.
 
 ### 📰 Detailed roadmap steps
 
