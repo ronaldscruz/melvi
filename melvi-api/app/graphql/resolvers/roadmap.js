@@ -1,3 +1,5 @@
+const Roadmap = require("../../controllers/roadmap");
+
 const roadmapResolver = {
   Roadmap: {
     async user(user) {
@@ -6,47 +8,16 @@ const roadmapResolver = {
   },
 
   Query: {
-    async getRoadmap(root, { id }, { models }) {
-      return models.Roadmap.findByPk(id);
-    },
-
-    async getRoadmaps(root, { userId }, { models }) {
-      return models.Roadmap.findAll({
-        where: {
-          userId
-        }
-      });
-    }
+    getRoadmap: (root, { id }, { session }) => Roadmap.getRoadmap(id, session),
+    getRoadmaps: (root, { userId }, { session }) => Roadmap.getRoadmaps(userId, session)
   },
 
   Mutation: {
-    async createRoadmap(root, { title, description, icon, userId }, { models }) {
-      return models.Roadmap.create({
-        title,
-        description,
-        icon,
-        userId
-      });
-    },
+    createRoadmap: (root, { title, description, icon, userId }, { session }) =>
+      Roadmap.createRoadmap({ title, description, icon, userId }, session),
 
-    async updateRoadmap(root, data, { models }) {
-      const { id, title, description, icon, userId } = data;
-
-      await models.Roadmap.update(
-        { title, description, icon, userId, updatedAt: Date.now() },
-        { where: { id } }
-      );
-
-      return models.Roadmap.findByPk(id);
-    },
-
-    async deleteRoadmap(root, { id }, { models }) {
-      const deleted = await models.Roadmap.findByPk(id);
-
-      await models.Roadmap.destroy({ where: { id } });
-
-      return deleted;
-    }
+    updateRoadmap: (root, data, { session }) => Roadmap.updateRoadmap(data, session),
+    deleteRoadmap: (root, { id }, { session }) => Roadmap.deleteRoadmap(id, session)
   }
 };
 

@@ -17,7 +17,9 @@ class PermissionController {
     return permission;
   }
 
-  async createPermission({ name }, session) {
+  async createPermission(data, session) {
+    const { name } = data;
+
     if (!session || session.user.permission.name !== "Developer")
       throw new Error("You don't have permission to create a Permission.");
 
