@@ -53,7 +53,7 @@ class RoadmapController {
     );
     if (!updatedRoadmap) throw new Error("Failed updating roadmap.");
 
-    const newRoadmap = await this.getRoadmap(id);
+    const newRoadmap = await this.getRoadmap(id, session);
 
     return newRoadmap;
   }

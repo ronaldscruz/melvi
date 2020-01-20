@@ -42,7 +42,7 @@ class PermissionController {
 
     if (!updated) throw new Error("Failed updating Permission ID:", id);
 
-    return this.getPermission(id);
+    return this.getPermission(id, session);
   }
 
   async deletePermission(id, session) {
