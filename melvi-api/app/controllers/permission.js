@@ -19,7 +19,7 @@ class PermissionController {
 
   async createPermission({ name }, session) {
     if (!session || session.user.permission.name !== "Developer")
-      throw new Error("You have no permission to create a Permission.");
+      throw new Error("You don't have permission to create a Permission.");
 
     const createdPermission = await Permission.create({ name });
     if (!createdPermission) throw new Error("Failed creating new Permission.");
@@ -29,7 +29,7 @@ class PermissionController {
 
   async updatePermission(newPermissionData, session) {
     if (!session || session.user.permission.name !== "Developer")
-      throw new Error("You have no permission to update Permissions entity.");
+      throw new Error("You don't have permission to update Permissions entity.");
 
     const { id, name } = newPermissionData;
 
@@ -45,7 +45,7 @@ class PermissionController {
 
   async deletePermission(id, session) {
     if (!session || session.user.permission.name !== "Developer")
-      throw new Error("You have no permission to delete a Permission.");
+      throw new Error("You don't have permission to delete a Permission.");
 
     const permissionToBeDeleted = await Permission.findByPk(id);
     if (!permissionToBeDeleted) throw new Error("Nothing to delete.");

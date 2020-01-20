@@ -45,7 +45,7 @@ class UserController {
       !session ||
       (session.user.permission.name !== "Developer" && session.user.id !== id)
     )
-      throw new Error("You have no permission to retrieve users.");
+      throw new Error("You don't have permission to retrieve users.");
 
     const user = await User.findByPk(id);
     if (!user) throw new Error("No users found with this ID.");
@@ -55,7 +55,7 @@ class UserController {
 
   async getUsers(session) {
     if (!session || session.user.permission.name !== "Developer")
-      throw new Error("You have no permission to retrieve users.");
+      throw new Error("You don't have permission to retrieve users.");
 
     const users = await User.findAll();
     if (!users) throw new Error("No users found.");
@@ -88,7 +88,7 @@ class UserController {
       !session ||
       (session.user.permission.name !== "Developer" && session.user.id !== id)
     )
-      throw new Error("You have no permission to update this user.");
+      throw new Error("You don't have permission to update this user.");
 
     if (password) {
       const newPassword = await bcrypt.hash(password, 10);
@@ -117,7 +117,7 @@ class UserController {
       !session ||
       (session.user.permission.name !== "Developer" && session.user.id !== id)
     )
-      throw new Error("You have no permission to delete this user.");
+      throw new Error("You don't have permission to delete this user.");
 
     const userToBeDeleted = await User.findByPk(id);
     if (!userToBeDeleted) throw new Error("No users with this ID found.");
