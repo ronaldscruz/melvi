@@ -2,7 +2,8 @@
 
 ## Getting Started
 
-💅 Pick an components lib and start using Prettier + ESLint <br>
+~~👗 Pick an components lib~~ <br>
+~~💅 Start using Prettier + ESLint~~ <br>
 🗃 Start any state lib/framework (Redux, Redux Saga or simply Apollo) <br>
 🔐 Create a login screen <br>
 🖌 Create an app presentation <br>
