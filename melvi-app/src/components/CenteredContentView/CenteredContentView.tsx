@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 type CenteredContentViewProps = {
   bgColor: string;
+  children: React.ReactNode | React.ReactNode[];
 };
 
 const CenteredContentView: React.FC<CenteredContentViewProps> = props => {
@@ -14,11 +15,12 @@ const CenteredContentView: React.FC<CenteredContentViewProps> = props => {
     background-color: ${props.bgColor};
   `;
 
-  return <CenteredContentViewWrapper />;
+  return <CenteredContentViewWrapper> {props.children} </CenteredContentViewWrapper>;
 };
 
 CenteredContentView.propTypes = {
   bgColor: PropTypes.string,
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
 };
 
 export default CenteredContentView;
