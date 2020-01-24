@@ -1,9 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components/native';
 
 import { ActivityIndicator } from 'react-native';
-import CenteredContentView from '../../components/CenteredContentView/CenteredContentView';
+import CenteredContentView from '../../components/CenteredContentView';
 
 import { DARK_BLUE, WHITE } from '../../constants/colors';
 
@@ -23,10 +22,6 @@ const FulfillLoading: React.FC<FulfillLoadingProps> = props => {
       <ActivityIndicator animating={true} color={WHITE} size="large" />
     </CenteredContentView>
   );
-};
-
-FulfillLoading.propTypes = {
-  message: PropTypes.string,
 };
 
 export default FulfillLoading;
