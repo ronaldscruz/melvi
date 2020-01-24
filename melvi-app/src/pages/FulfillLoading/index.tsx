@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/native';
 
-import { ActivityIndicator, View } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 import CenteredContentView from '../../components/CenteredContentView/CenteredContentView';
 
 import { DARK_BLUE, WHITE } from '../../constants/colors';

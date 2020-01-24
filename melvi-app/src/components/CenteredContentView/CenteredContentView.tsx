@@ -15,12 +15,11 @@ const CenteredContentView: React.FC<CenteredContentViewProps> = props => {
     background-color: ${props.bgColor};
   `;
 
-  return <CenteredContentViewWrapper> {props.children} </CenteredContentViewWrapper>;
-};
-
-CenteredContentView.propTypes = {
-  bgColor: PropTypes.string,
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+  return (
+    <CenteredContentViewWrapper>
+      {React.Children.map(props.children, (child, i) => child)}
+    </CenteredContentViewWrapper>
+  );
 };
 
 export default CenteredContentView;
