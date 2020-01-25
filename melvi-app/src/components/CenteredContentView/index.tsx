@@ -1,6 +1,6 @@
 import React from 'react';
 import StyledCenteredContentView from './styled';
-import { DARK_BLUE } from '../../constants/colors';
+import { MIDNIGHT_BLUE } from '../../constants/colors';
 
 type CenteredContentViewProps = {
   bgColor?: string;
@@ -9,7 +9,7 @@ type CenteredContentViewProps = {
 
 const CenteredContentView: React.FC<CenteredContentViewProps> = props => {
   return (
-    <StyledCenteredContentView bgColor={DARK_BLUE}>
+    <StyledCenteredContentView bgColor={MIDNIGHT_BLUE}>
       {props.children}
     </StyledCenteredContentView>
   );
