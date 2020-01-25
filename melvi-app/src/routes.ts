@@ -2,7 +2,7 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import Dashboard from './pages/Dashboard';
-import FulfillLoading from './pages/FulfillLoading';
+import Loading from './pages/Loading';
 import SignIn from './pages/SignIn';
 
 const AppStack = createStackNavigator({
@@ -16,7 +16,7 @@ const AuthStack = createStackNavigator({
 export default createAppContainer(
   createSwitchNavigator(
     {
-      Loading: FulfillLoading,
+      Loading,
       App: AppStack,
       Auth: AuthStack,
     },
