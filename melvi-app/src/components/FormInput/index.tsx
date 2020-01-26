@@ -5,6 +5,7 @@ import { CLOUDS, ASBESTOS } from '../../constants/colors';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { Input, InputProps } from 'react-native-elements';
 import { ShowPassword } from './styled';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 interface FormInputProps extends InputProps {
   iconName?: string;
@@ -26,12 +27,14 @@ const FormInput: React.FC<FormInputProps> = props => {
         leftIconContainerStyle={{ paddingRight: 14 }}
         rightIcon={
           props.password && (
-            <ShowPassword
-              name={secure ? 'eye' : 'eye-slash'}
-              color={CLOUDS}
-              size={16}
-              onPress={(): void => setSecure(!secure)}
-            />
+            <TouchableOpacity>
+              <ShowPassword
+                name={secure ? 'eye' : 'eye-slash'}
+                color={CLOUDS}
+                size={16}
+                onPress={(): void => setSecure(!secure)}
+              />
+            </TouchableOpacity>
           )
         }
         {...props}

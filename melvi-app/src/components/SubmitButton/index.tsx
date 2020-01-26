@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { GREEN_SEA, CLOUDS } from '../../constants/colors';
+import { GREEN_SEA, GREEN_SEA_DARK, CLOUDS } from '../../constants/colors';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { Button, ButtonProps } from 'react-native-elements';
@@ -10,6 +10,7 @@ interface SubmitButtonProps extends ButtonProps {
   gapTop?: boolean;
   fulfill?: boolean;
   bgColor?: string;
+  disabledBgColor?: string;
 }
 
 const SubmitButton: React.FC<SubmitButtonProps> = props => {
@@ -23,6 +24,9 @@ const SubmitButton: React.FC<SubmitButtonProps> = props => {
       containerStyle={{
         marginTop: props.gapTop ? 42 : 0,
         width: props.fulfill ? '100%' : null,
+      }}
+      disabledStyle={{
+        backgroundColor: props.disabledBgColor || GREEN_SEA_DARK,
       }}
       titleStyle={{ marginRight: 12 }}
       iconRight={true}

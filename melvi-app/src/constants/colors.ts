@@ -5,6 +5,7 @@ export const AMETHYST = 'rgba(155, 89, 182,1.0)';
 export const BELIZE_ROLE = 'rgba(41, 128, 185,1.0)';
 export const PETER_RIVER = 'rgba(52, 152, 219,1.0)';
 export const TURQUOISE = 'rgba(26, 188, 156,1.0)';
+export const GREEN_SEA_DARK = 'rgba(22, 160, 133,0.6)';
 export const GREEN_SEA = 'rgba(22, 160, 133,1.0)';
 export const NEPHRITIS = 'rgba(39, 174, 96,1.0)';
 export const EMERALD = 'rgba(46, 204, 113,1.0)';
