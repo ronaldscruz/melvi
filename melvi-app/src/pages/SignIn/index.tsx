@@ -6,7 +6,7 @@ import {
 } from 'react-navigation';
 import { AsyncStorage } from 'react-native';
 import gql from 'graphql-tag';
-import { useLazyQuery, useQuery } from '@apollo/react-hooks';
+import { useLazyQuery } from '@apollo/react-hooks';
 
 import { MIDNIGHT_BLUE } from '../../constants/colors';
 
@@ -33,6 +33,8 @@ const SignIn: React.FC<SignInProps> = props => {
     signIn,
     { loading: signInLoading, error: signInError, data: token },
   ] = useLazyQuery(SIGN_IN);
+
+  if (signInError) console.log(signInError);
 
   if (token) {
     AsyncStorage.setItem('token', token.login).then(() =>
