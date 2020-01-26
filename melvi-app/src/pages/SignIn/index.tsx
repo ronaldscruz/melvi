@@ -1,4 +1,10 @@
 import React, { useState } from 'react';
+import {
+  NavigationScreenProp,
+  NavigationState,
+  NavigationParams,
+} from 'react-navigation';
+import { AsyncStorage } from 'react-native';
 import gql from 'graphql-tag';
 import { useLazyQuery, useQuery } from '@apollo/react-hooks';
 
@@ -9,24 +15,30 @@ import FormInput from '../../components/FormInput';
 import SubmitButton from '../../components/SubmitButton';
 import Logo from '../../components/Logo';
 
+type SignInProps = {
+  navigation?: NavigationScreenProp<NavigationState, NavigationParams>;
+};
+
 const SIGN_IN = gql`
   query SignIn($email: String!, $password: String!) {
     login(email: $email, password: $password)
   }
 `;
 
-const SignIn: React.FC = () => {
+const SignIn: React.FC<SignInProps> = props => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const [
     signIn,
-    { called: requestedSignIn, loading: signInLoading, error: signInError, data: token },
+    { loading: signInLoading, error: signInError, data: token },
   ] = useLazyQuery(SIGN_IN);
 
-  if (requestedSignIn && signInLoading) console.log('SIGN IN:', email, password);
-  if (signInError) console.log('ERROR SIGNING IN:', signInError);
-  if (token) console.log(token);
+  if (token) {
+    AsyncStorage.setItem('token', token.login).then(() =>
+      props.navigation.navigate('App'),
+    );
+  }
 
   return (
     <CenteredContentView bgColor={MIDNIGHT_BLUE}>
@@ -48,8 +60,8 @@ const SignIn: React.FC = () => {
         iconName="chevron-right"
         gapTop
         fulfill
-        disabled={requestedSignIn && signInLoading}
-        loading={requestedSignIn && signInLoading}
+        disabled={signInLoading}
+        loading={signInLoading}
         onPress={(): void => signIn({ variables: { email, password } })}
       />
     </CenteredContentView>

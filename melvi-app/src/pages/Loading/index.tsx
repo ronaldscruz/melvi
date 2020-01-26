@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { AsyncStorage } from 'react-native';
 import FulfillLoading from '../../components/FulfillLoading';
 import {
   NavigationScreenProp,
@@ -11,9 +12,20 @@ type LoadingProps = {
 };
 
 const Loading: React.FC<LoadingProps> = props => {
-  // TODO: Verify if the user already have a session in async storage
+  const [authentication, setAuthenticated] = useState('loading');
+
+  const userIsAuthenticated = async (): Promise<void> => {
+    const token = !!(await AsyncStorage.getItem('token'));
+    console.log('Token result: ', token);
+    token ? setAuthenticated('authenticated') : setAuthenticated('not_authenticated');
+  };
+
   useEffect(() => {
-    props.navigation.navigate('Auth');
+    console.log('Loading component rendered, asking for token...');
+    userIsAuthenticated();
+    console.log('Comparing token status');
+    if (authentication === 'authenticated') props.navigation.navigate('App');
+    if (authentication === 'not_authenticated') props.navigation.navigate('Auth');
   });
 
   return <FulfillLoading message="Loading. Please, wait..." />;
