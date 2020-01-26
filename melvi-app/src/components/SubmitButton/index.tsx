@@ -21,7 +21,7 @@ const SubmitButton: React.FC<SubmitButtonProps> = props => {
         justifyContent: 'center',
       }}
       containerStyle={{
-        marginTop: props.gapTop ? 38 : 0,
+        marginTop: props.gapTop ? 42 : 0,
         width: props.fulfill ? '100%' : null,
       }}
       titleStyle={{ marginRight: 12 }}

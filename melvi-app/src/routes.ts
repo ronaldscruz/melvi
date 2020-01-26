@@ -10,7 +10,12 @@ const AppStack = createStackNavigator({
 });
 
 const AuthStack = createStackNavigator({
-  SignIn,
+  SignIn: {
+    screen: SignIn,
+    navigationOptions: {
+      headerShown: false,
+    },
+  },
 });
 
 export default createAppContainer(
