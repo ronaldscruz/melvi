@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components/native';
+import { LoadingLabel } from './styled';
 
 import { CLOUDS, MIDNIGHT_BLUE } from '../../constants/colors';
 
@@ -9,12 +9,6 @@ import CenteredContentView from '../CenteredContentView';
 type FulfillLoadingProps = {
   message?: string;
 };
-
-const LoadingLabel = styled.Text`
-  font-size: 15px;
-  color: ${CLOUDS};
-  margin-bottom: 32px;
-`;
 
 const FulfillLoading: React.FC<FulfillLoadingProps> = props => {
   return (

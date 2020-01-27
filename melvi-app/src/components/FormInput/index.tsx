@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
+import { ShowPassword } from './styled';
 import { CLOUDS, ASBESTOS } from '../../constants/colors';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { Input, InputProps } from 'react-native-elements';
-import { ShowPassword } from './styled';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 interface FormInputProps extends InputProps {

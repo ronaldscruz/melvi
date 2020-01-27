@@ -18,8 +18,15 @@ import { AsyncStorage } from 'react-native';
 //   };
 // });
 
+const authHeaders = {
+  Authorization: null,
+};
+
+AsyncStorage.getItem('token').then(token => (authHeaders.Authorization = token));
+
 const link = createHttpLink({
   uri: 'http://192.168.1.2:4500/graphql',
+  headers: authHeaders,
 });
 
 const client = new ApolloClient({
