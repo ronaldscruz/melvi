@@ -5,11 +5,15 @@ import {
   NavigationParams,
 } from 'react-navigation';
 import { AsyncStorage } from 'react-native';
-import gql from 'graphql-tag';
-import { useLazyQuery } from '@apollo/react-hooks';
 
+// Constants
 import { MIDNIGHT_BLUE } from '../../constants/colors';
 
+// GraphQL
+import { useLazyQuery } from '@apollo/react-hooks';
+import { SIGN_IN } from '../../graphql/User';
+
+// Local components
 import CenteredContentView from '../../components/CenteredContentView';
 import FormInput from '../../components/FormInput';
 import SubmitButton from '../../components/SubmitButton';
@@ -18,12 +22,6 @@ import Logo from '../../components/Logo';
 type SignInProps = {
   navigation?: NavigationScreenProp<NavigationState, NavigationParams>;
 };
-
-const SIGN_IN = gql`
-  query SignIn($email: String!, $password: String!) {
-    login(email: $email, password: $password)
-  }
-`;
 
 const SignIn: React.FC<SignInProps> = props => {
   const [email, setEmail] = useState('');
