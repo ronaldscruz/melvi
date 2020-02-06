@@ -34,7 +34,8 @@ const SignIn: React.FC<SignInProps> = props => {
     { loading: signInLoading, error: signInError, data: token },
   ] = useLazyQuery(SIGN_IN);
 
-  if (signInError) console.log(signInError);
+  // TODO: handle login errors
+  if (signInError) console.warn(signInError);
 
   if (token) {
     AsyncStorage.setItem('token', token.login).then(() =>
@@ -47,6 +48,7 @@ const SignIn: React.FC<SignInProps> = props => {
       <Logo size="medium" />
       <FormInput
         placeholder="E-mail"
+        autoCapitalize="none"
         iconName="envelope"
         gapBottom={true}
         onChangeText={(e: string): void => setEmail(e)}

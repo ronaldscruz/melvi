@@ -11,19 +11,21 @@ const httpLink = createHttpLink({
   uri: 'http://192.168.0.47:4500/graphql',
 });
 
-const authLink = setContext(async (_, { headers }) => {
-  const token = await AsyncStorage.getItem('token');
-
-  return {
-    headers: {
-      ...headers,
-      Authorization: token,
-    },
-  };
-});
+const authHeader = setContext(
+  () =>
+    new Promise(async (resolve, reject) => {
+      try {
+        const token = await AsyncStorage.getItem('token');
+        token ? resolve({ headers: { Authorization: token } }) : resolve({});
+      } catch (err) {
+        console.error('Failed retrieving token from AsyncStorage.');
+        reject();
+      }
+    }),
+);
 
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+  link: authHeader.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
