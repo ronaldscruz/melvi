@@ -3,6 +3,8 @@ const requireSiblings = require("../../utils/filesUtils");
 
 const rootSchema = gql`
   type Query {
+    login(email: String!, password: String!): String!
+
     getUser(id: Int!): User!
     getUsers: [User!]!
 
@@ -35,8 +37,6 @@ const rootSchema = gql`
     ): User!
 
     deleteUser(id: Int!): User!
-
-    login(email: String!, password: String!): String!
 
     # PERMISSION
     createPermission(name: String!): Permission!
