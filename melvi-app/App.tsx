@@ -1,24 +1,39 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-import styled from 'styled-components/native';
+import Routes from './src/routes';
+import { ApolloProvider } from 'react-apollo';
+import { ApolloClient, ApolloClientOptions } from 'apollo-client';
+import { createHttpLink } from 'apollo-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { setContext } from 'apollo-link-context';
+import { AsyncStorage } from 'react-native';
 
-const ViewCenteredContent = styled.View`
-  display: flex;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-`;
+const httpLink = createHttpLink({
+  uri: 'http://192.168.0.47:4500/graphql',
+});
 
-const TitleText = styled.Text`
-  font-weight: bold;
-  font-size: 14;
-`;
+const authHeader = setContext(
+  () =>
+    new Promise(async (resolve, reject) => {
+      try {
+        const token = await AsyncStorage.getItem('token');
+        token ? resolve({ headers: { Authorization: token } }) : resolve({});
+      } catch (err) {
+        console.error('Failed retrieving token from AsyncStorage.');
+        reject();
+      }
+    }),
+);
 
-const App = () => {
+const client = new ApolloClient({
+  link: authHeader.concat(httpLink),
+  cache: new InMemoryCache(),
+});
+
+const App: React.FC = () => {
   return (
-    <ViewCenteredContent>
-      <TitleText>Open up App.tsx to start working on your app!</TitleText>
-    </ViewCenteredContent>
+    <ApolloProvider client={client}>
+      <Routes />
+    </ApolloProvider>
   );
 };
 
