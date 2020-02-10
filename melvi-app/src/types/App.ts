@@ -11,7 +11,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
  */
 
 type DefaultAppNavigationProps = {
-  Auth: undefined;
+  SignIn: undefined;
 
   Dashboard: undefined;
 };

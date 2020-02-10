@@ -26,14 +26,14 @@ const SignIn: React.FC<SignInProps> = props => {
 
   const [
     signIn,
-    { loading: signInLoading, error: signInError, data: token },
+    { loading: signInLoading, error: signInError, data: signInData },
   ] = useLazyQuery(SIGN_IN);
 
   // TODO: handle login errors
   if (signInError) console.warn(signInError);
 
-  if (token) {
-    AsyncStorage.setItem('token', token.login).then(() =>
+  if (signInData) {
+    AsyncStorage.setItem('token', signInData.login.token).then(() =>
       props.navigation.navigate('App'),
     );
   }
@@ -61,7 +61,9 @@ const SignIn: React.FC<SignInProps> = props => {
         fulfill
         disabled={signInLoading}
         loading={signInLoading}
-        onPress={(): void => signIn({ variables: { email, password } })}
+        onPress={(): void => {
+          signIn({ variables: { email, password } });
+        }}
       />
     </CenteredContentView>
   );

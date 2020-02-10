@@ -57,7 +57,6 @@ const Auth: React.FC = () => (
       options={{ headerShown: false }}
     />
     <AuthStack.Screen name="SignIn" component={SignIn} options={{ headerShown: false }} />
-    <AuthStack.Screen name="App" component={App} />
   </AuthStack.Navigator>
 );
 
