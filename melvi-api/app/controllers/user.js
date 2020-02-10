@@ -37,7 +37,7 @@ class UserController {
 
     if (!token) throw new Error("Failed generating token.");
 
-    return token;
+    return { token };
   }
 
   async getUser(id, session) {
