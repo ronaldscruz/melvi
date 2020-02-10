@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import {
-  NavigationScreenProp,
-  NavigationState,
-  NavigationParams,
-} from 'react-navigation';
 import { AsyncStorage } from 'react-native';
+
+import { SignInNavigation } from '../../types/Auth';
 
 // Constants
 import { MIDNIGHT_BLUE } from '../../constants/colors';
@@ -20,7 +17,7 @@ import SubmitButton from '../../components/SubmitButton';
 import Logo from '../../components/Logo';
 
 type SignInProps = {
-  navigation?: NavigationScreenProp<NavigationState, NavigationParams>;
+  navigation: SignInNavigation;
 };
 
 const SignIn: React.FC<SignInProps> = props => {

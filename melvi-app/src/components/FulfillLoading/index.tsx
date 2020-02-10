@@ -1,10 +1,11 @@
 import React from 'react';
-import { LoadingLabel } from './styled';
-
 import { CLOUDS, MIDNIGHT_BLUE } from '../../constants/colors';
 
+import { LoadingLabel } from './styled';
 import { ActivityIndicator } from 'react-native';
+
 import CenteredContentView from '../CenteredContentView';
+import Logo from '../Logo';
 
 type FulfillLoadingProps = {
   message?: string;
@@ -13,7 +14,8 @@ type FulfillLoadingProps = {
 const FulfillLoading: React.FC<FulfillLoadingProps> = props => {
   return (
     <CenteredContentView bgColor={MIDNIGHT_BLUE}>
-      <LoadingLabel> {props.message} </LoadingLabel>
+      <Logo size="medium" />
+      {props.message && <LoadingLabel> {props.message} </LoadingLabel>}
       <ActivityIndicator animating={true} color={CLOUDS} size="large" />
     </CenteredContentView>
   );

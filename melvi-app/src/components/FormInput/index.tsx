@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { ShowPassword } from './styled';
+import { ShowPasswordIcon } from './styled';
 import { CLOUDS, ASBESTOS } from '../../constants/colors';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
@@ -16,6 +16,9 @@ interface FormInputProps extends InputProps {
 const FormInput: React.FC<FormInputProps> = props => {
   const [secure, setSecure] = useState(true);
 
+  /**
+   * Secure field *******
+   */
   function renderSecure(): React.ReactElement {
     return (
       <Input
@@ -28,7 +31,7 @@ const FormInput: React.FC<FormInputProps> = props => {
         rightIcon={
           props.password && (
             <TouchableOpacity>
-              <ShowPassword
+              <ShowPasswordIcon
                 name={secure ? 'eye' : 'eye-slash'}
                 color={CLOUDS}
                 size={16}
@@ -42,6 +45,9 @@ const FormInput: React.FC<FormInputProps> = props => {
     );
   }
 
+  /**
+   * If password prop was true, render the secure input, else render a default input
+   */
   return props.password ? (
     renderSecure()
   ) : (

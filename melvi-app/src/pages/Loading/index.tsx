@@ -1,14 +1,11 @@
 import React, { useEffect } from 'react';
 import { AsyncStorage } from 'react-native';
+import { LoadingNavigation } from '../../types/Auth';
+
 import FulfillLoading from '../../components/FulfillLoading';
-import {
-  NavigationScreenProp,
-  NavigationState,
-  NavigationParams,
-} from 'react-navigation';
 
 type LoadingProps = {
-  navigation?: NavigationScreenProp<NavigationState, NavigationParams>;
+  navigation: LoadingNavigation;
 };
 
 const Loading: React.FC<LoadingProps> = props => {
@@ -17,12 +14,12 @@ const Loading: React.FC<LoadingProps> = props => {
       if (token) {
         props.navigation.navigate('App');
       } else {
-        props.navigation.navigate('Auth');
+        props.navigation.navigate('SignIn');
       }
     });
   });
 
-  return <FulfillLoading message="Loading. Please, wait..." />;
+  return <FulfillLoading />;
 };
 
 export default Loading;
