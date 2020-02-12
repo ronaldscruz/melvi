@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 // App colors
 import {
@@ -18,6 +18,8 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import Loading from './pages/Loading';
 import SignIn from './pages/SignIn';
 import Dashboard from './pages/Dashboard';
+import { AsyncStorage } from 'react-native';
+import FulfillLoading from './components/FulfillLoading';
 
 /**
  * Custom navigation theme
@@ -64,9 +66,28 @@ const Auth: React.FC = () => (
  * Routes container with app theme
  */
 const Routes: React.FC = () => {
+  const [isAuthenticated, setAuthenticated] = useState(null);
+
+  useEffect(() => {
+    AsyncStorage.getItem('token')
+      .then(token => {
+        if (token) setAuthenticated(true);
+      })
+      .catch(err => {
+        console.error('Error authenticating:', err);
+      });
+  });
+
+  const renderNavigatorBasedOnAuthState: void = () => {
+    if (isAuthenticated === null) return <FulfillLoading />;
+    if (isAuthenticated === true) return <App />;
+    if (isAuthenticated === false) return <Auth />;
+    return;
+  };
+
   return (
     <NavigationContainer theme={MelviTheme}>
-      <Auth />
+      {renderNavigatorBasedOnAuthState()}
     </NavigationContainer>
   );
 };

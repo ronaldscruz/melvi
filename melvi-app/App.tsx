@@ -8,7 +8,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { setContext } from 'apollo-link-context';
 import { AsyncStorage } from 'react-native';
 const httpLink = createHttpLink({
-  uri: 'http://192.168.1.2:4500/graphql',
+  uri: 'http://192.168.0.47:4500/graphql',
 });
 
 const authHeader = setContext(
