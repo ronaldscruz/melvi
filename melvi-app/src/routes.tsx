@@ -1,14 +1,5 @@
 import React from 'react';
 
-// App colors
-import {
-  MIDNIGHT_BLUE,
-  GREEN_SEA,
-  WET_ASPHALT,
-  WET_ASPHALT_DARK,
-  CLOUDS,
-} from './constants/colors';
-
 // Apollo
 import { useQuery } from '@apollo/react-hooks';
 
@@ -20,26 +11,15 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
+// App theme
+import DefaultTheme from './themes/default';
+
 // Components
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 // Pages rendered in navigators
 import SignIn from './pages/SignIn';
 import Dashboard from './pages/Dashboard';
-
-/**
- * Custom navigation theme
- */
-const MelviTheme = {
-  dark: true,
-  colors: {
-    primary: GREEN_SEA,
-    background: MIDNIGHT_BLUE,
-    card: WET_ASPHALT,
-    text: CLOUDS,
-    border: WET_ASPHALT_DARK,
-  },
-};
 
 const AppDrawer = createDrawerNavigator();
 const AuthStack = createStackNavigator();
@@ -70,7 +50,7 @@ const Routes: React.FC = () => {
 
   return (
     <SafeAreaProvider>
-      <NavigationContainer theme={MelviTheme}>
+      <NavigationContainer theme={DefaultTheme}>
         {data?.token ? <App /> : <Auth />}
       </NavigationContainer>
     </SafeAreaProvider>
