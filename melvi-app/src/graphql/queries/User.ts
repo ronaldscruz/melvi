@@ -8,8 +8,8 @@ export const SIGN_IN = gql`
   }
 `;
 
-export const ME = gql`
-  query me($userId: Number!) {
+export const GET_USER = gql`
+  query GetUser($userId: Number!) {
     getUser(id: $userId) {
       id
       fullName
