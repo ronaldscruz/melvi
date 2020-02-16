@@ -21,6 +21,10 @@ function requireRightLogo(size): React.ReactElement {
   return logo[size]();
 }
 
+/**
+ * A standard component to display app logo
+ * @param size Logo size ( small | medium | large )
+ */
 const Logo: React.FC<LogoProps> = props => {
   return requireRightLogo(props.size);
 };

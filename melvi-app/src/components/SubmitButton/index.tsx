@@ -3,6 +3,7 @@ import React from 'react';
 import { GREEN_SEA, GREEN_SEA_DARK, CLOUDS } from '../../constants/colors';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
+
 import { Button, ButtonProps } from 'react-native-elements';
 
 interface SubmitButtonProps extends ButtonProps {
@@ -13,6 +14,15 @@ interface SubmitButtonProps extends ButtonProps {
   disabledBgColor?: string;
 }
 
+/**
+ * A button based in the React Native Elements Button
+ *
+ * @param iconName An optional icon to the button
+ * @param gapTop Add a gap from top?
+ * @param fulfill Should the button fill the entire available space? (similar to "btn-block" class from Bootstrap)
+ * @param bgColor Background color to the button
+ * @param disabledBgColor Color for the button when it gets disabled
+ */
 const SubmitButton: React.FC<SubmitButtonProps> = props => {
   return (
     <Button

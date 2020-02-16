@@ -11,6 +11,10 @@ type FulfillLoadingProps = {
   message?: string;
 };
 
+/**
+ * A loading that fills the entire screen
+ * @param message Optional message to be displayed above the ActivityIndicator
+ */
 const FulfillLoading: React.FC<FulfillLoadingProps> = props => {
   return (
     <CenteredContentView bgColor={MIDNIGHT_BLUE}>

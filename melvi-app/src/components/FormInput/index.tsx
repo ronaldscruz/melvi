@@ -13,11 +13,18 @@ interface FormInputProps extends InputProps {
   password?: boolean;
 }
 
+/**
+ * Default form input
+ *
+ * @param iconName An icon added to the left of the input
+ * @param gapBottom Add a gap from bottom?
+ * @param password Is the input a password?
+ */
 const FormInput: React.FC<FormInputProps> = props => {
   const [secure, setSecure] = useState(true);
 
   /**
-   * Secure field *******
+   * Secure field with "view password" feature
    */
   function renderSecure(): React.ReactElement {
     return (
@@ -46,7 +53,7 @@ const FormInput: React.FC<FormInputProps> = props => {
   }
 
   /**
-   * If password prop was true, render the secure input, else render a default input
+   * If password prop is true, render the secure input, else render a default input
    */
   return props.password ? (
     renderSecure()
