@@ -20,6 +20,8 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 // Pages rendered in navigators
 import SignIn from './pages/SignIn';
 import Dashboard from './pages/Dashboard';
+import FulfillLoading from './components/FulfillLoading';
+import { StatusBar } from 'react-native';
 
 const AppDrawer = createDrawerNavigator();
 const AuthStack = createStackNavigator();
@@ -46,7 +48,9 @@ const Auth: React.FC = () => (
  * Routes container with app theme
  */
 const Routes: React.FC = () => {
-  const { data } = useQuery(VERIFY_AUTH_TOKEN);
+  const { loading, data } = useQuery(VERIFY_AUTH_TOKEN);
+
+  if (loading) return <FulfillLoading />;
 
   return (
     <SafeAreaProvider>

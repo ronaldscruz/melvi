@@ -10,8 +10,8 @@ const DefaultTheme = {
   dark: true,
   colors: {
     primary: GREEN_SEA,
-    background: MIDNIGHT_BLUE,
-    card: WET_ASPHALT,
+    background: WET_ASPHALT,
+    card: MIDNIGHT_BLUE,
     text: CLOUDS,
     border: WET_ASPHALT_DARK,
   },

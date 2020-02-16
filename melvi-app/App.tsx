@@ -14,34 +14,30 @@ const httpLink = createHttpLink({
 
 const cache = new InMemoryCache();
 
-const authHeader = setContext(
-  (_, { headers }) =>
-    new Promise(async (resolve, reject) => {
-      try {
-        const token = await AsyncStorage.getItem('token');
+const initialCache = {
+  token: null,
+};
 
-        if (token) {
-          cache.writeData({ data: { token } });
-          resolve({ headers: { ...headers, authorization: token } });
-        } else {
-          resolve({});
-        }
-      } catch (err) {
-        console.error('Failed retrieving token from AsyncStorage.');
-        reject();
-      }
-    }),
-);
+const authLink = setContext(async (_, { headers }) => {
+  try {
+    const token = await AsyncStorage.getItem('token');
+
+    if (token) {
+      return { headers: { ...headers, authorization: token } };
+    } else {
+      return {};
+    }
+  } catch (err) {
+    console.error('Failed retrieving token from AsyncStorage.');
+    return {};
+  }
+});
 
 const client = new ApolloClient({
-  link: authHeader.concat(httpLink),
+  link: authLink.concat(httpLink),
   cache,
   resolvers: {},
 });
-
-const initialCache = {
-  token: '',
-};
 
 client.onResetStore(
   (): Promise<void> => {
@@ -51,6 +47,10 @@ client.onResetStore(
 );
 
 const App: React.FC = () => {
+  AsyncStorage.getItem('token').then(token => {
+    client.writeData({ data: { token } });
+  });
+
   return (
     <ApolloProvider client={client}>
       <Routes />
