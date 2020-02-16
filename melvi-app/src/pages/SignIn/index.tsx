@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { AsyncStorage } from 'react-native';
 
+// Types
 import { SignInNavigation } from '../../types/Auth';
 
 // Constants
 import { MIDNIGHT_BLUE } from '../../constants/colors';
 
 // GraphQL
-import { useLazyQuery } from '@apollo/react-hooks';
-import { SIGN_IN } from '../../graphql/User';
+import { useLazyQuery, useApolloClient } from '@apollo/react-hooks';
+import { SIGN_IN } from '../../graphql/queries/User';
 
 // Local components
 import CenteredContentView from '../../components/CenteredContentView';
@@ -21,8 +22,10 @@ type SignInProps = {
 };
 
 const SignIn: React.FC<SignInProps> = props => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const client = useApolloClient();
+
+  const [email, setEmail] = useState('ronald@email.com');
+  const [password, setPassword] = useState('123456');
 
   const [
     signIn,
@@ -33,9 +36,9 @@ const SignIn: React.FC<SignInProps> = props => {
   if (signInError) console.warn(signInError);
 
   if (signInData) {
-    AsyncStorage.setItem('token', signInData.login.token).then(() =>
-      props.navigation.navigate('App'),
-    );
+    AsyncStorage.setItem('token', signInData.login.token).then(() => {
+      client.writeData({ data: { token: signInData.login.token } });
+    });
   }
 
   return (
@@ -47,12 +50,14 @@ const SignIn: React.FC<SignInProps> = props => {
         iconName="envelope"
         gapBottom={true}
         onChangeText={(e: string): void => setEmail(e)}
+        value={email}
       />
       <FormInput
         placeholder="Password"
         iconName="key"
         password
         onChangeText={(p: string): void => setPassword(p)}
+        value={password}
       />
       <SubmitButton
         title="Sign in"
@@ -62,7 +67,9 @@ const SignIn: React.FC<SignInProps> = props => {
         disabled={signInLoading}
         loading={signInLoading}
         onPress={(): void => {
-          signIn({ variables: { email, password } });
+          signIn({
+            variables: { email, password },
+          });
         }}
       />
     </CenteredContentView>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 // App colors
 import {
@@ -9,17 +9,23 @@ import {
   CLOUDS,
 } from './constants/colors';
 
+// Apollo
+import { useQuery } from '@apollo/react-hooks';
+
+// Queries
+import { VERIFY_AUTH_TOKEN } from './graphql/queries/User';
+
 // Navigators
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
+// Components
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+
 // Pages rendered in navigators
-import Loading from './pages/Loading';
 import SignIn from './pages/SignIn';
 import Dashboard from './pages/Dashboard';
-import { AsyncStorage } from 'react-native';
-import FulfillLoading from './components/FulfillLoading';
 
 /**
  * Custom navigation theme
@@ -48,16 +54,10 @@ const App: React.FC = () => (
 );
 
 /**
- * This is the initial router. Loading route decides if it will navigate to SignIn screen or
- * to App router (Dashboard, Roadmaps, Profile, etc.)
+ * Auth screen routes
  */
 const Auth: React.FC = () => (
-  <AuthStack.Navigator initialRouteName="Loading">
-    <AuthStack.Screen
-      name="Loading"
-      component={Loading}
-      options={{ headerShown: false }}
-    />
+  <AuthStack.Navigator initialRouteName="SignIn">
     <AuthStack.Screen name="SignIn" component={SignIn} options={{ headerShown: false }} />
   </AuthStack.Navigator>
 );
@@ -66,29 +66,14 @@ const Auth: React.FC = () => (
  * Routes container with app theme
  */
 const Routes: React.FC = () => {
-  const [isAuthenticated, setAuthenticated] = useState(null);
-
-  useEffect(() => {
-    AsyncStorage.getItem('token')
-      .then(token => {
-        if (token) setAuthenticated(true);
-      })
-      .catch(err => {
-        console.error('Error authenticating:', err);
-      });
-  });
-
-  const renderNavigatorBasedOnAuthState: void = () => {
-    if (isAuthenticated === null) return <FulfillLoading />;
-    if (isAuthenticated === true) return <App />;
-    if (isAuthenticated === false) return <Auth />;
-    return;
-  };
+  const { data } = useQuery(VERIFY_AUTH_TOKEN);
 
   return (
-    <NavigationContainer theme={MelviTheme}>
-      {renderNavigatorBasedOnAuthState()}
-    </NavigationContainer>
+    <SafeAreaProvider>
+      <NavigationContainer theme={MelviTheme}>
+        {data?.token ? <App /> : <Auth />}
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 };
 

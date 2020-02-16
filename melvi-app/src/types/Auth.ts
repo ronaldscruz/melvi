@@ -11,15 +11,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
  */
 
 type DefaultAuthNavigationProps = {
-  App: undefined;
-
-  Loading: undefined;
   SignIn: undefined;
 };
-
-export type LoadingNavigation = StackNavigationProp<
-  DefaultAuthNavigationProps,
-  'Loading'
->;
 
 export type SignInNavigation = StackNavigationProp<DefaultAuthNavigationProps, 'SignIn'>;

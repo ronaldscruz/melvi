@@ -22,3 +22,9 @@ export const ME = gql`
     }
   }
 `;
+
+export const VERIFY_AUTH_TOKEN = gql`
+  {
+    token @client
+  }
+`;
