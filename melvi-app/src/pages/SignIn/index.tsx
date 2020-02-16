@@ -21,6 +21,9 @@ type SignInProps = {
   navigation: SignInNavigation;
 };
 
+/**
+ * Initial sign in page
+ */
 const SignIn: React.FC<SignInProps> = props => {
   const client = useApolloClient();
 

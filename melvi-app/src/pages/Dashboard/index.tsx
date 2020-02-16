@@ -9,6 +9,9 @@ type DashboardProps = {
   navigation: DashboardNavigation;
 };
 
+/**
+ * First "authenticated" app screen
+ */
 const Dashboard: React.FC<DashboardProps> = props => {
   const client = useApolloClient();
 
