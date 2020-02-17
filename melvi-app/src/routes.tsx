@@ -21,7 +21,6 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import SignIn from './pages/SignIn';
 import Dashboard from './pages/Dashboard';
 import FulfillLoading from './components/FulfillLoading';
-import { StatusBar } from 'react-native';
 
 const AppDrawer = createDrawerNavigator();
 const AuthStack = createStackNavigator();
