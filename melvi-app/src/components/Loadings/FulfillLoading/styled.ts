@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { CLOUDS } from '../../constants/colors';
+import { CLOUDS } from '../../../constants/colors';
 
 export const LoadingLabel = styled.Text`
   font-size: 15px;

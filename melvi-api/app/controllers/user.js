@@ -1,6 +1,5 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const { jwtSecret } = require("../../config/auth");
 
 const { User, Permission } = require("../models");
 
@@ -30,7 +29,7 @@ class UserController {
       {
         user: { id, fullName, dateOfBirth, email, permission, createdAt, updatedAt }
       },
-      jwtSecret,
+      process.env.JWT_SECRET,
       {
         expiresIn: 3600
       }
@@ -38,7 +37,20 @@ class UserController {
 
     if (!token) throw new Error("Failed generating token.");
 
-    return token;
+    return { token };
+  }
+
+  async me(session) {
+    if (!session || !session.user.id) throw new Error("Enter a valid user ID.");
+
+    const {
+      user: { id }
+    } = session;
+
+    const user = await User.findByPk(id);
+    if (!user) throw new Error("No users found with this ID.");
+
+    return user;
   }
 
   async getUser(id, session) {

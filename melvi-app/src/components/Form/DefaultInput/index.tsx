@@ -1,21 +1,31 @@
 import React, { useState } from 'react';
 
-import { ShowPassword } from './styled';
-import { CLOUDS, ASBESTOS } from '../../constants/colors';
+import { ShowPasswordIcon } from './styled';
+import { CLOUDS, ASBESTOS } from '../../../constants/colors';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { Input, InputProps } from 'react-native-elements';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-interface FormInputProps extends InputProps {
+interface DefaultInputProps extends InputProps {
   iconName?: string;
   gapBottom?: boolean;
   password?: boolean;
 }
 
-const FormInput: React.FC<FormInputProps> = props => {
+/**
+ * Default form input
+ *
+ * @param iconName An icon added to the left of the input
+ * @param gapBottom Add a gap from bottom?
+ * @param password Is the input a password?
+ */
+const DefaultInput: React.FC<DefaultInputProps> = props => {
   const [secure, setSecure] = useState(true);
 
+  /**
+   * Secure field with "view password" feature
+   */
   function renderSecure(): React.ReactElement {
     return (
       <Input
@@ -28,7 +38,7 @@ const FormInput: React.FC<FormInputProps> = props => {
         rightIcon={
           props.password && (
             <TouchableOpacity>
-              <ShowPassword
+              <ShowPasswordIcon
                 name={secure ? 'eye' : 'eye-slash'}
                 color={CLOUDS}
                 size={16}
@@ -42,6 +52,9 @@ const FormInput: React.FC<FormInputProps> = props => {
     );
   }
 
+  /**
+   * If password prop is true, render the secure input, else render a default input
+   */
   return props.password ? (
     renderSecure()
   ) : (
@@ -56,4 +69,4 @@ const FormInput: React.FC<FormInputProps> = props => {
   );
 };
 
-export default FormInput;
+export default DefaultInput;

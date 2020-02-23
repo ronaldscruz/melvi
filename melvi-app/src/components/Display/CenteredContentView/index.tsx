@@ -1,6 +1,6 @@
 import React from 'react';
 import StyledCenteredContentView from './styled';
-import { MIDNIGHT_BLUE } from '../../constants/colors';
+import { MIDNIGHT_BLUE } from '../../../constants/colors';
 
 type CenteredContentViewProps = {
   bgColor?: string;
