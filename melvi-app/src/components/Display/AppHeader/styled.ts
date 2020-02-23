@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-import { MIDNIGHT_BLUE, CLOUDS } from '../../constants/colors';
+import { MIDNIGHT_BLUE, CLOUDS } from '../../../constants/colors';
 
 const headerHeight = '60px';
 

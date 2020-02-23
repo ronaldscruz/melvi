@@ -20,7 +20,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 // Pages rendered in navigators
 import SignIn from './pages/SignIn';
 import Dashboard from './pages/Dashboard';
-import FulfillLoading from './components/FulfillLoading';
+import FulfillLoading from './components/Loadings/FulfillLoading';
 
 const AppDrawer = createDrawerNavigator();
 const AuthStack = createStackNavigator();

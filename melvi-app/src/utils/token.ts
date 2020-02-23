@@ -3,7 +3,7 @@ import { AsyncStorage } from 'react-native';
 /**
  * Get token from AsyncStorage
  */
-export async function getToken(): Promise<string> {
+export async function getAuthToken(): Promise<string> {
   try {
     const token = await AsyncStorage.getItem('token');
     return token;

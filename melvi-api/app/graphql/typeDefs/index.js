@@ -4,6 +4,7 @@ const requireSiblings = require("../../utils/filesUtils");
 const rootSchema = gql`
   type Query {
     login(email: String!, password: String!): Login!
+    me: User!
 
     getUser(id: Int!): User!
     getUsers: [User!]!

@@ -40,6 +40,19 @@ class UserController {
     return { token };
   }
 
+  async me(session) {
+    if (!session || !session.user.id) throw new Error("Enter a valid user ID.");
+
+    const {
+      user: { id }
+    } = session;
+
+    const user = await User.findByPk(id);
+    if (!user) throw new Error("No users found with this ID.");
+
+    return user;
+  }
+
   async getUser(id, session) {
     if (
       !session ||

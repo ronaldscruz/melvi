@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
 import { ShowPasswordIcon } from './styled';
-import { CLOUDS, ASBESTOS } from '../../constants/colors';
+import { CLOUDS, ASBESTOS } from '../../../constants/colors';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { Input, InputProps } from 'react-native-elements';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-interface FormInputProps extends InputProps {
+interface DefaultInputProps extends InputProps {
   iconName?: string;
   gapBottom?: boolean;
   password?: boolean;
@@ -20,7 +20,7 @@ interface FormInputProps extends InputProps {
  * @param gapBottom Add a gap from bottom?
  * @param password Is the input a password?
  */
-const FormInput: React.FC<FormInputProps> = props => {
+const DefaultInput: React.FC<DefaultInputProps> = props => {
   const [secure, setSecure] = useState(true);
 
   /**
@@ -69,4 +69,4 @@ const FormInput: React.FC<FormInputProps> = props => {
   );
 };
 
-export default FormInput;
+export default DefaultInput;

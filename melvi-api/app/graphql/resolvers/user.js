@@ -9,6 +9,7 @@ const userResolver = {
 
   Query: {
     login: (root, { email, password }) => User.login(email, password),
+    me: (root, args, { session }) => User.me(session),
     getUser: (root, { id }, { session }) => User.getUser(id, session),
     getUsers: (root, args, { session }) => User.getUsers(session)
   },

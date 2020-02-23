@@ -1,11 +1,11 @@
 import React from 'react';
-import { CLOUDS, MIDNIGHT_BLUE } from '../../constants/colors';
+import { CLOUDS, MIDNIGHT_BLUE } from '../../../constants/colors';
 
 import { LoadingLabel } from './styled';
 import { ActivityIndicator } from 'react-native';
 
-import CenteredContentView from '../CenteredContentView';
-import Logo from '../Logo';
+import CenteredContentView from '../../Display/CenteredContentView';
+import Logo from '../../Display/Logo';
 
 type FulfillLoadingProps = {
   message?: string;

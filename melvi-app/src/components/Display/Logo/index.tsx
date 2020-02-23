@@ -11,10 +11,10 @@ function requireRightLogo(size): React.ReactElement {
     //   <StyledLogo source={require('../../assets/logo_small.png')} />
     // ),
     medium: (): React.ReactElement => (
-      <StyledLogo source={require('../../assets/logo_medium.png')} />
+      <StyledLogo source={require('../../../assets/logo_medium.png')} />
     ),
     large: (): React.ReactElement => (
-      <StyledLogo source={require('../../assets/logo_large.png')} />
+      <StyledLogo source={require('../../../assets/logo_large.png')} />
     ),
   };
 

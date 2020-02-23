@@ -29,7 +29,7 @@ const server = new ApolloServer({
       }
     }
 
-    return {};
+    return { models };
   }
 });
 

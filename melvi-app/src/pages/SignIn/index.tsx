@@ -12,10 +12,10 @@ import { useLazyQuery, useApolloClient } from '@apollo/react-hooks';
 import { SIGN_IN } from '../../graphql/queries/User';
 
 // Local components
-import CenteredContentView from '../../components/CenteredContentView';
-import FormInput from '../../components/FormInput';
-import SubmitButton from '../../components/SubmitButton';
-import Logo from '../../components/Logo';
+import CenteredContentView from '../../components/Display/CenteredContentView';
+import DefaultInput from '../../components/Form/DefaultInput';
+import DefaultButton from '../../components/Buttons/DefaultButton';
+import Logo from '../../components/Display/Logo';
 
 type SignInProps = {
   navigation: SignInNavigation;
@@ -47,7 +47,7 @@ const SignIn: React.FC<SignInProps> = props => {
   return (
     <CenteredContentView bgColor={MIDNIGHT_BLUE}>
       <Logo size="medium" />
-      <FormInput
+      <DefaultInput
         placeholder="E-mail"
         autoCapitalize="none"
         iconName="envelope"
@@ -55,14 +55,14 @@ const SignIn: React.FC<SignInProps> = props => {
         onChangeText={(e: string): void => setEmail(e)}
         value={email}
       />
-      <FormInput
+      <DefaultInput
         placeholder="Password"
         iconName="key"
         password
         onChangeText={(p: string): void => setPassword(p)}
         value={password}
       />
-      <SubmitButton
+      <DefaultButton
         title="Sign in"
         iconName="chevron-right"
         gapTop

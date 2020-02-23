@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { CLOUDS } from '../../constants/colors';
+import { CLOUDS } from '../../../constants/colors';
 
 const StyledCenteredContentView = styled.View`
   padding: 12px 24px;

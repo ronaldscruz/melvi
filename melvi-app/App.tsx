@@ -11,7 +11,7 @@ import { createHttpLink } from 'apollo-link-http';
 import { setContext } from 'apollo-link-context';
 
 // Utils
-import { getToken } from './src/utils/token';
+import { getAuthToken } from './src/utils/token';
 
 const httpLink = createHttpLink({
   uri: 'http://192.168.1.9:4500/graphql',
@@ -25,9 +25,10 @@ const initialCache = {
 
 const authLink = setContext(async (_, { headers }) => {
   try {
-    const token = await getToken();
+    const token = await getAuthToken();
 
     if (token) {
+      console.log('>> context set');
       return { headers: { ...headers, authorization: token } };
     } else {
       return {};
@@ -53,7 +54,7 @@ client.onResetStore(
 
 const App: React.FC = () => {
   useEffect(() => {
-    getToken().then(token => {
+    getAuthToken().then(token => {
       client.writeData({ data: { token } });
     });
   });
