@@ -19,7 +19,7 @@ type DashboardProps = {
 const Dashboard: React.FC<DashboardProps> = props => {
   const client = useApolloClient();
 
-  const { loading, error, data } = useQuery(GET_USER, { variables: { userId: 5 } });
+  const { loading, error, data } = useQuery(GET_USER, { variables: { userId: 3 } });
 
   console.log(error);
 
