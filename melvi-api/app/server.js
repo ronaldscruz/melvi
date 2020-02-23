@@ -23,14 +23,13 @@ const server = new ApolloServer({
 
       try {
         session = await jwt.verify(authToken, process.env.JWT_SECRET);
+        return { session, models };
       } catch (err) {
         throw new Error("Failed retrieving token data (malformed token).", err);
       }
-
-      return { session };
     }
 
-    return {};
+    return { models };
   }
 });
 

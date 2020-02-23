@@ -11,16 +11,20 @@ function requireRightLogo(size): React.ReactElement {
     //   <StyledLogo source={require('../../assets/logo_small.png')} />
     // ),
     medium: (): React.ReactElement => (
-      <StyledLogo source={require('../../assets/logo_medium.png')} />
+      <StyledLogo source={require('../../../assets/logo_medium.png')} />
     ),
     large: (): React.ReactElement => (
-      <StyledLogo source={require('../../assets/logo_large.png')} />
+      <StyledLogo source={require('../../../assets/logo_large.png')} />
     ),
   };
 
   return logo[size]();
 }
 
+/**
+ * A standard component to display app logo
+ * @param size Logo size ( small | medium | large )
+ */
 const Logo: React.FC<LogoProps> = props => {
   return requireRightLogo(props.size);
 };
