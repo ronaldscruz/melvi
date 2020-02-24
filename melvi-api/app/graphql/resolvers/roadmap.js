@@ -8,8 +8,8 @@ const roadmapResolver = {
   },
 
   Query: {
-    getRoadmap: (root, { id }, { session }) => Roadmap.getRoadmap(id, session),
-    getRoadmaps: (root, { userId }, { session }) => Roadmap.getRoadmaps(userId, session)
+    roadmap: (root, { id }, { session }) => Roadmap.roadmap(id, session),
+    roadmaps: (root, { userId }, { session }) => Roadmap.roadmaps(userId, session)
   },
 
   Mutation: {

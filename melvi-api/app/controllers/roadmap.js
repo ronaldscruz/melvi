@@ -1,7 +1,7 @@
 const { Roadmap } = require("../models");
 
 class RoadmapController {
-  async getRoadmap(id, session) {
+  async roadmap(id, session) {
     if (!session) throw new Error("You don't have permission to retrieve a Roadmap.");
 
     const roadmap = await Roadmap.findByPk(id);
@@ -13,7 +13,7 @@ class RoadmapController {
     return roadmap;
   }
 
-  async getRoadmaps(userId, session) {
+  async roadmaps(userId, session) {
     if (!session) throw new Error("You don't have permission to retrieve Roadmaps.");
 
     if (userId !== session.user.id)
@@ -53,7 +53,7 @@ class RoadmapController {
     );
     if (!updatedRoadmap) throw new Error("Failed updating roadmap.");
 
-    const newRoadmap = await this.getRoadmap(id, session);
+    const newRoadmap = await this.roadmap(id, session);
 
     return newRoadmap;
   }

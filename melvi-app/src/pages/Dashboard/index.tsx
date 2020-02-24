@@ -1,14 +1,24 @@
 import React from 'react';
 import { DashboardNavigation } from '../../types/App';
 
-import { useApolloClient, useQuery } from 'react-apollo';
+// Colors & Style
 
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { TouchableOpacity, AsyncStorage, Text } from 'react-native';
-
-import AppHeader from '../../components/Display/AppHeader';
+// Apollo & query stuff
+import { useQuery, useApolloClient } from 'react-apollo';
 import { ME } from '../../graphql/queries/User';
-import { CLOUDS } from '../../constants/colors';
+import { ROADMAPS } from '../../graphql/queries/Roadmap';
+
+// Lib Components
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Card, ListItem } from 'react-native-elements';
+
+// Local Components
+import { Title, Text } from '../../components/Text';
+import Header from '../../components/Display/Header';
+import DefaultButton from '../../components/Buttons/DefaultButton';
+
+// Utils
+import { removeAuthToken } from '../../utils/token';
 
 type DashboardProps = {
   navigation: DashboardNavigation;
@@ -17,32 +27,37 @@ type DashboardProps = {
 /**
  * First "authenticated" app screen
  */
-const Dashboard: React.FC<DashboardProps> = props => {
+const Dashboard: React.FC<DashboardProps> = ({ navigation }) => {
   const client = useApolloClient();
 
-  const { loading: meLoading, error: meError, data } = useQuery(ME);
+  const { loading: userLoading, error: userError, data: userData } = useQuery(ME);
+  const {
+    loading: roadmapsLoading,
+    error: roadmapsError,
+    data: roadmapsData,
+  } = useQuery(ROADMAPS, { variables: { userId: 3 } });
+
+  roadmapsError && console.warn(roadmapsError);
+  roadmapsData && console.log(roadmapsData);
 
   return (
     <SafeAreaView>
-      <AppHeader pageTitle="Dashboard" openMenuAction={props.navigation.openDrawer} />
-
-      <Text style={{ color: CLOUDS, fontSize: 16, padding: 14 }}>
-        {data?.me?.fullName ? 'Welcome, ' + data.me.fullName : ''}
-      </Text>
-
-      <TouchableOpacity
-        onPress={async (): Promise<boolean> => {
-          try {
-            await Promise.all([AsyncStorage.removeItem('token'), client.resetStore()]);
-            return true;
-          } catch (err) {
-            console.error('Failed clearing token:', err);
-            return false;
-          }
-        }}
-      >
-        <Text> click here to logout </Text>
-      </TouchableOpacity>
+      <Header pageTitle="Dashboard" openMenuAction={navigation.openDrawer} />
+      <Text> Logged as: {userData?.me?.fullName} </Text>
+      <DefaultButton
+        title="Logout"
+        gapTop={true}
+        fulfill={false}
+        onPress={() => removeAuthToken(client)}
+      />
+      <Title> Your roadmaps </Title>
+      {roadmapsData?.roadmaps?.length > 0 && (
+        <Card>
+          {roadmapsData.roadmaps.map(roadmap => (
+            <ListItem key={roadmap.user.fullName} title={roadmap.title} />
+          ))}
+        </Card>
+      )}
     </SafeAreaView>
   );
 };

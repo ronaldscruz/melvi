@@ -28,7 +28,6 @@ const authLink = setContext(async (_, { headers }) => {
     const token = await getAuthToken();
 
     if (token) {
-      console.log('>> context set');
       return { headers: { ...headers, authorization: token } };
     } else {
       return {};

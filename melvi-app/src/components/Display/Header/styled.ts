@@ -5,7 +5,7 @@ import { MIDNIGHT_BLUE, CLOUDS } from '../../../constants/colors';
 
 const headerHeight = '60px';
 
-export const Header = styled.View`
+export const HeaderWrapper = styled.View`
   flex-direction: row;
   align-items: center;
   height: ${headerHeight};

@@ -1,20 +1,20 @@
 import React from 'react';
-import { Header, Text, MenuButton, MenuIcon } from './styled';
+import { HeaderWrapper, Text, MenuButton, MenuIcon } from './styled';
 
-type AppHeaderProps = {
+type HeaderProps = {
   pageTitle: string;
   openMenuAction?: Function;
 };
 
-const AppHeader: React.FC<AppHeaderProps> = props => {
+const Header: React.FC<HeaderProps> = props => {
   return (
-    <Header>
+    <HeaderWrapper>
       <MenuButton onPress={props.openMenuAction}>
         <MenuIcon name="bars" />
       </MenuButton>
       <Text> {props.pageTitle} </Text>
-    </Header>
+    </HeaderWrapper>
   );
 };
 
-export default AppHeader;
+export default Header;

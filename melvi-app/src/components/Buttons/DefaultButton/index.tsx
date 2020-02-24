@@ -33,7 +33,7 @@ const DefaultButton: React.FC<DefaultButtonProps> = props => {
       }}
       containerStyle={{
         marginTop: props.gapTop ? 42 : 0,
-        width: props.fulfill ? '100%' : null,
+        width: props.fulfill ? '100%' : 160,
       }}
       disabledStyle={{
         backgroundColor: props.disabledBgColor || GREEN_SEA_DARK,

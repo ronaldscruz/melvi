@@ -3,13 +3,13 @@ const RoadmapStep = require("../../controllers/roadmapStep");
 const roadmapStepResolver = {
   RoadmapStep: {
     async roadmap(roadmap) {
-      return roadmap.getRoadmap();
+      return roadmap.roadmap();
     }
   },
 
   Query: {
-    getRoadmapSteps: (root, { roadmapId }, { session }) =>
-      RoadmapStep.getRoadmapSteps(roadmapId, session)
+    roadmapsteps: (root, { roadmapId }, { session }) =>
+      RoadmapStep.roadmapsteps(roadmapId, session)
   },
 
   Mutation: {

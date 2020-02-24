@@ -1,13 +1,13 @@
 const { RoadmapStep, Roadmap } = require("../models");
 
 class RoadmapStepController {
-  async getRoadmapSteps(roadmapId, session) {
+  async roadmapsteps(roadmapId, session) {
     if (!session) throw new Error("You don't have permission to retrieve RoadmapSteps");
 
-    const targetRoadmap = await Roadmap.findByPk(roadmapId);
-    if (!targetRoadmap) throw new Error("Invalid roadmap.");
+    const tarroadmap = await Roadmap.findByPk(roadmapId);
+    if (!tarroadmap) throw new Error("Invalid roadmap.");
 
-    if (targetRoadmap.userId !== session.user.id)
+    if (tarroadmap.userId !== session.user.id)
       throw new Error("You can't get RoadmapSteps from another user.");
 
     const roadmapSteps = await RoadmapStep.findAll({ where: { roadmapId } });
@@ -21,10 +21,10 @@ class RoadmapStepController {
 
     const { title, body, icon, roadmapId } = data;
 
-    const targetRoadmap = await Roadmap.findByPk(roadmapId);
-    if (!targetRoadmap) throw new Error("Invalid roadmap.");
+    const tarroadmap = await Roadmap.findByPk(roadmapId);
+    if (!tarroadmap) throw new Error("Invalid roadmap.");
 
-    if (targetRoadmap.userId !== session.user.id)
+    if (tarroadmap.userId !== session.user.id)
       throw new Error("You can't create a RoadmapStep for another user.");
 
     const createdRoadmapStep = await RoadmapStep.create({
@@ -43,10 +43,10 @@ class RoadmapStepController {
 
     const { id, title, body, icon, roadmapId } = newRoadmapStepData;
 
-    const targetRoadmap = await Roadmap.findByPk(roadmapId);
-    if (!targetRoadmap) throw new Error("Invalid roadmap.");
+    const tarroadmap = await Roadmap.findByPk(roadmapId);
+    if (!tarroadmap) throw new Error("Invalid roadmap.");
 
-    if (targetRoadmap.userId !== session.user.id)
+    if (tarroadmap.userId !== session.user.id)
       throw new Error("You can't update a RoadmapStep from another user.");
 
     const updatedRoadmapStep = await RoadmapStep.update(
@@ -74,10 +74,10 @@ class RoadmapStepController {
     const roadmapStepToBeDeleted = await RoadmapStep.findByPk(id);
     if (!roadmapStepToBeDeleted) throw new Error("Nothing to be deleted.");
 
-    const targetRoadmap = await Roadmap.findByPk(roadmapStepToBeDeleted.roadmapId);
-    if (!targetRoadmap) throw new Error("Invalid roadmap.");
+    const tarroadmap = await Roadmap.findByPk(roadmapStepToBeDeleted.roadmapId);
+    if (!tarroadmap) throw new Error("Invalid roadmap.");
 
-    if (targetRoadmap.userId !== session.user.id)
+    if (tarroadmap.userId !== session.user.id)
       throw new Error("You can't delete a RoadmapStep from another user.");
 
     const hasBeenDeleted = await RoadmapStep.destroy({ where: { id } });

@@ -12,10 +12,10 @@ const rootSchema = gql`
     getPermission(id: Int!): Permission!
     getPermissions: [Permission!]!
 
-    getRoadmaps(userId: Int!): [Roadmap!]!
-    getRoadmap(id: Int!): Roadmap!
+    roadmaps(userId: Int!): [Roadmap!]!
+    roadmap(id: Int!): Roadmap!
 
-    getRoadmapSteps(roadmapId: Int!): [RoadmapStep!]!
+    roadmapsteps(roadmapId: Int!): [RoadmapStep!]!
   }
 
   type Mutation {
