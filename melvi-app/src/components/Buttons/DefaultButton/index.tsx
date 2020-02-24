@@ -32,7 +32,7 @@ const DefaultButton: React.FC<DefaultButtonProps> = props => {
         justifyContent: 'center',
       }}
       containerStyle={{
-        marginTop: props.gapTop ? 42 : 0,
+        marginTop: props.gapTop ? 28 : 0,
         width: props.fulfill ? '100%' : 160,
       }}
       disabledStyle={{

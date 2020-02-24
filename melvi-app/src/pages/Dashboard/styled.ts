@@ -16,3 +16,10 @@ export const Welcome = styled(SafeAreaView)`
   align-items: flex-start;
   margin-left: 14px;
 `;
+
+export const RoadmapsTitleWrapper = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 18px 2px 12px;
+`;

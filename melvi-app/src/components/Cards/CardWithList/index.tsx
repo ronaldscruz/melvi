@@ -1,13 +1,23 @@
 import React from 'react';
+import { Card, ListItem, ItemText, ListButtonWrapper } from './styled';
 
-import { Card, ListItem, ItemText } from './styled';
+// Local Components
+import DefaultButton from '../../Buttons/DefaultButton';
+
+// Lib components
+import { Avatar } from 'react-native-elements';
+
+interface ListButton {
+  title: string;
+  action: Function;
+}
 
 type CardWithListProps = {
   listData: Array<any>;
   keyExtractor: string;
   text: string;
   limit: number;
-  viewMore?: boolean;
+  listButton?: ListButton;
   dark?: boolean;
 };
 
@@ -17,7 +27,7 @@ type CardWithListProps = {
  * @param keyExtractor Which property from the objects inside array will be considered as a key?
  * @param text Which property from the objects inside array will be the title of list item?
  * @param limit List size limit
- * @param viewMore Should the component display a "View more" button below the card?
+ * @param listButton If passed, CardWithList will display a button below the list
  * @param dark Dark theme
  */
 const CardWithList: React.FC<CardWithListProps> = ({
@@ -25,7 +35,7 @@ const CardWithList: React.FC<CardWithListProps> = ({
   keyExtractor,
   text,
   limit,
-  viewMore = true,
+  listButton,
   dark = true,
 }) => {
   const selectedListData = limit ? listData.slice(0, limit) : listData;
@@ -35,10 +45,20 @@ const CardWithList: React.FC<CardWithListProps> = ({
       <Card dark={dark}>
         {selectedListData.map(item => (
           <ListItem key={item[keyExtractor]}>
+            <Avatar rounded size={32} title={item[text].split('').shift()} />
             <ItemText> {item[text]} </ItemText>
           </ListItem>
         ))}
       </Card>
+      {listButton && (
+        <ListButtonWrapper>
+          <DefaultButton
+            gapTop
+            title={listButton.title}
+            onPress={(): void => listButton.action()}
+          />
+        </ListButtonWrapper>
+      )}
     </>
   );
 };

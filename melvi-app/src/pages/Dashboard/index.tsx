@@ -1,24 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { DashboardNavigation } from '../../types/App';
 
 // Colors & Style
-import { DashboardWrapper, UserGreeting, Welcome } from './styled';
+import { GREEN_SEA } from '../../constants/colors';
+import { DashboardWrapper, UserGreeting, Welcome, RoadmapsTitleWrapper } from './styled';
 
 // Apollo & query stuff
-import { useQuery } from 'react-apollo';
+import { useQuery, useApolloClient } from 'react-apollo';
 import { ME } from '../../graphql/queries/User';
 import { ROADMAPS } from '../../graphql/queries/Roadmap';
 
 // Lib Components
 import { Avatar } from 'react-native-elements';
+import { ActivityIndicator } from 'react-native';
 
 // Local Components
 import { Title, Text } from '../../components/Text';
 import Header from '../../components/Display/Header';
+import RoundedButtonWithIcon from '../../components/Buttons/RoundedButtonWithIcon';
+import DefaultButton from '../../components/Buttons/DefaultButton';
+import CardWithList from '../../components/Cards/CardWithList';
+import FulfillLoading from '../../components/Loadings/FulfillLoading';
 
 // Utils
+import { removeAuthToken } from '../../utils/token';
 import { getTextInitials } from '../../utils/user';
-import CardWithList from '../../components/Cards/CardWithList';
 
 type DashboardProps = {
   navigation: DashboardNavigation;
@@ -28,25 +34,57 @@ type DashboardProps = {
  * First "authenticated" app screen
  */
 const Dashboard: React.FC<DashboardProps> = ({ navigation }) => {
-  const { data: userData } = useQuery(ME);
-  const { data: roadmapsData } = useQuery(ROADMAPS, { variables: { userId: 3 } });
+  const client = useApolloClient();
 
-  const { me } = userData;
-  const { roadmaps } = roadmapsData;
+  const { data: userData, loading: userLoading } = useQuery(ME);
+  const { data: roadmapsData, loading: roadmapsLoading, error: roadmapsError } = useQuery(
+    ROADMAPS,
+    {
+      variables: { userId: 3 },
+      pollInterval: 4000,
+    },
+  );
+
+  roadmapsError && console.warn(roadmapsError);
+
+  if (userLoading || roadmapsLoading) return <FulfillLoading />;
 
   return (
     <>
       <Header pageTitle="Dashboard" openMenuAction={navigation.openDrawer} />
       <DashboardWrapper>
         <UserGreeting>
-          <Avatar size={52} rounded title={getTextInitials(me?.fullName)} />
+          <Avatar
+            size={52}
+            rounded
+            title={
+              userData?.me?.fullName ? getTextInitials(userData?.me?.fullName) : '..'
+            }
+          />
           <Welcome>
             <Text> Welcome, </Text>
-            <Text bold>{me?.fullName} </Text>
+            <Text bold>{userData?.me?.fullName} </Text>
           </Welcome>
         </UserGreeting>
-        <Title> Your roadmaps </Title>
-        <CardWithList keyExtractor="title" listData={roadmaps} text="title" limit={3} />
+        {/* <DefaultButton
+          title="Logout"
+          gapTop={true}
+          fulfill={false}
+          onPress={(): Promise<boolean> => removeAuthToken(client)}
+        /> */}
+        <RoadmapsTitleWrapper>
+          <Title> Your roadmaps </Title>
+          <RoundedButtonWithIcon iconName="plus" size={32} />
+        </RoadmapsTitleWrapper>
+        {roadmapsData?.roadmaps.length > 0 && (
+          <CardWithList
+            keyExtractor="title"
+            listData={roadmapsData.roadmaps}
+            listButton={{ title: 'View more', action: (): void => alert('hey') }}
+            text="title"
+            limit={3}
+          />
+        )}
       </DashboardWrapper>
     </>
   );
