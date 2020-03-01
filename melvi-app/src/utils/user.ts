@@ -10,8 +10,9 @@ export function getTextInitials(
 ): string {
   const namesFromName = name.split(' ');
 
-  if (namesFromName.length < 2)
-    throw new Error('Please enter a phrase with at least 2 separated words.');
+  if (namesFromName.length < 2) {
+    initialsQuantity = 'single';
+  }
 
   const firstName = namesFromName[0];
   const lastName = namesFromName.pop();
