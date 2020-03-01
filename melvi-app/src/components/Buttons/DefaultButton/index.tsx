@@ -8,6 +8,7 @@ import { Button, ButtonProps } from 'react-native-elements';
 
 interface DefaultButtonProps extends ButtonProps {
   iconName?: string;
+  title: string;
   gapTop?: boolean;
   fulfill?: boolean;
   bgColor?: string;
@@ -24,6 +25,12 @@ interface DefaultButtonProps extends ButtonProps {
  * @param disabledBgColor Color for the button when it gets disabled
  */
 const DefaultButton: React.FC<DefaultButtonProps> = props => {
+  const buttonWidth = props.fulfill
+    ? '100%'
+    : props?.title?.length > 30
+    ? props.title.length * 9
+    : 160;
+
   return (
     <Button
       buttonStyle={{
@@ -33,12 +40,14 @@ const DefaultButton: React.FC<DefaultButtonProps> = props => {
       }}
       containerStyle={{
         marginTop: props.gapTop ? 28 : 0,
-        width: props.fulfill ? '100%' : 160,
+        width: buttonWidth,
       }}
       disabledStyle={{
         backgroundColor: props.disabledBgColor || GREEN_SEA_DARK,
       }}
-      titleStyle={{ marginRight: 12 }}
+      titleStyle={{
+        marginHorizontal: 8,
+      }}
       iconRight={true}
       icon={<Icon name={props.iconName} size={15} color={CLOUDS} />}
       {...props}
