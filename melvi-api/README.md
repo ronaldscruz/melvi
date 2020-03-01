@@ -20,8 +20,8 @@
 ~~🔑 Login system with password encryption~~<br>
 ~~🖌 A complete CRUD of all entities~~ <br>
 🔑 Auth refactor using Passport and maybe integrate OAuth<br>
-🕹️ Start using controllers <br>
-🌳 Start using Git Flow <br>
+~~🕹️ Start using controllers~~ <br>
+~~🌳 Start using Git Flow~~ <br>
 📷 Make a Profile Picture system (files management in Backend) <br>
 <br>
 
