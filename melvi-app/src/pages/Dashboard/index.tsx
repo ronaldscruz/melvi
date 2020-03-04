@@ -40,12 +40,10 @@ const Dashboard: React.FC<DashboardProps> = ({ navigation }) => {
   const { data: roadmapsData, loading: roadmapsLoading, error: roadmapsError } = useQuery(
     ROADMAPS,
     {
-      variables: { userId: 1 },
+      variables: { userId: 5 },
       pollInterval: 3600,
     },
   );
-
-  console.log(userData?.me?.fullName);
 
   roadmapsError && console.warn(roadmapsError);
 
@@ -74,7 +72,11 @@ const Dashboard: React.FC<DashboardProps> = ({ navigation }) => {
         /> */}
         <RoadmapsTitleWrapper>
           <Title> Your roadmaps </Title>
-          <RoundedButtonWithIcon iconName="plus" size={32} />
+          <RoundedButtonWithIcon
+            onPress={(): void => alert('in progress...')}
+            iconName="plus"
+            size={32}
+          />
         </RoadmapsTitleWrapper>
         {roadmapsData?.roadmaps.length > 0 ? (
           <CardWithList
