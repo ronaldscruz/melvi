@@ -23,6 +23,12 @@ const server = new ApolloServer({
 
       try {
         session = await jwt.verify(authToken, process.env.JWT_SECRET);
+
+        const expirationDate = new Date(session.exp * 1000);
+        const currentDate = new Date().getTime();
+
+        if (currentDate > expirationDate) return { models };
+
         return { session, models };
       } catch (err) {
         throw new Error("Failed retrieving token data (malformed token).", err);
