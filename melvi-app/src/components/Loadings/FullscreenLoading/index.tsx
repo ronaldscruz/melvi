@@ -7,7 +7,7 @@ import { ActivityIndicator } from 'react-native';
 import CenteredContentView from '../../Display/CenteredContentView';
 import Logo from '../../Display/Logo';
 
-type FulfillLoadingProps = {
+type FullscreenLoadingProps = {
   message?: string;
 };
 
@@ -15,7 +15,7 @@ type FulfillLoadingProps = {
  * A loading that fills the entire screen
  * @param message Optional message to be displayed above the ActivityIndicator
  */
-const FulfillLoading: React.FC<FulfillLoadingProps> = props => {
+const FullscreenLoading: React.FC<FullscreenLoadingProps> = props => {
   return (
     <CenteredContentView bgColor={MIDNIGHT_BLUE}>
       <Logo size="medium" />
@@ -25,4 +25,4 @@ const FulfillLoading: React.FC<FulfillLoadingProps> = props => {
   );
 };
 
-export default FulfillLoading;
+export default FullscreenLoading;

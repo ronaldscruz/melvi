@@ -20,7 +20,7 @@ import RoundedButtonWithIcon from '../../components/Buttons/RoundedButtonWithIco
 import DefaultButton from '../../components/Buttons/DefaultButton';
 import CardWithList from '../../components/Cards/CardWithList';
 import CardEmptyData from '../../components/Cards/CardEmptyData';
-import FulfillLoading from '../../components/Loadings/FulfillLoading';
+import FullscreenLoading from '../../components/Loadings/FullscreenLoading';
 
 // Utils
 import { removeAuthToken } from '../../utils/token';
@@ -47,7 +47,11 @@ const Dashboard: React.FC<DashboardProps> = ({ navigation }) => {
 
   roadmapsError && console.warn(roadmapsError);
 
-  if (userLoading || roadmapsLoading) return <FulfillLoading />;
+  // User session is no more valid
+  if (!userLoading && !userData?.me?.id) removeAuthToken(client);
+
+  // If anything is loading returns the fullscreeen loading
+  if (userLoading || roadmapsLoading) return <FullscreenLoading />;
 
   return (
     <>
