@@ -40,7 +40,7 @@ const Dashboard: React.FC<DashboardProps> = ({ navigation }) => {
   const { data: roadmapsData, loading: roadmapsLoading, error: roadmapsError } = useQuery(
     ROADMAPS,
     {
-      variables: { userId: 5 },
+      variables: { userId: +userData?.me?.id },
       pollInterval: 3600,
     },
   );
@@ -93,7 +93,7 @@ const Dashboard: React.FC<DashboardProps> = ({ navigation }) => {
           <CardEmptyData
             message="You don't have any roadmap."
             actionButton={{
-              title: 'Click here to start',
+              title: 'Create one',
               action: (): void => alert('in progress...'),
             }}
           />
