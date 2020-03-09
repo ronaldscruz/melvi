@@ -1,30 +1,30 @@
 import React from 'react';
-import { DashboardNavigation } from '../../types/App';
+import { DashboardNavigation } from '../../../types/App';
 
 // Colors & Style
-import { GREEN_SEA } from '../../constants/colors';
+import { GREEN_SEA } from '../../../constants/colors';
 import { DashboardWrapper, UserGreeting, Welcome, RoadmapsTitleWrapper } from './styled';
 
 // Apollo & query stuff
 import { useQuery, useApolloClient } from 'react-apollo';
-import { ME } from '../../graphql/queries/User';
-import { ROADMAPS } from '../../graphql/queries/Roadmap';
+import { ME } from '../../../graphql/queries/User';
+import { ROADMAPS } from '../../../graphql/queries/Roadmap';
 
 // Lib Components
 import { Avatar } from 'react-native-elements';
 
 // Local Components
-import { Title, Text } from '../../components/Text';
-import Header from '../../components/Display/Header';
-import RoundedButtonWithIcon from '../../components/Buttons/RoundedButtonWithIcon';
-import DefaultButton from '../../components/Buttons/DefaultButton';
-import CardWithList from '../../components/Cards/CardWithList';
-import CardEmptyData from '../../components/Cards/CardEmptyData';
-import FullscreenLoading from '../../components/Loadings/FullscreenLoading';
+import { Title, Text } from '../../../components/Text';
+import Header from '../../../components/Display/Header';
+import RoundedButtonWithIcon from '../../../components/Buttons/RoundedButtonWithIcon';
+import DefaultButton from '../../../components/Buttons/DefaultButton';
+import CardWithList from '../../../components/Cards/CardWithList';
+import CardEmptyData from '../../../components/Cards/CardEmptyData';
+import FullscreenLoading from '../../../components/Loadings/FullscreenLoading';
 
 // Utils
-import { removeAuthToken } from '../../utils/token';
-import { getTextInitials } from '../../utils/user';
+import { removeAuthToken } from '../../../utils/token';
+import { getTextInitials } from '../../../utils/user';
 
 type DashboardProps = {
   navigation: DashboardNavigation;

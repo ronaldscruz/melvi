@@ -18,8 +18,8 @@ import DefaultTheme from './themes/default';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 // Pages rendered in navigators
-import SignIn from './pages/SignIn';
-import Dashboard from './pages/Dashboard';
+import SignIn from './pages/Auth/SignIn';
+import Dashboard from './pages/App/Dashboard';
 import FullscreenLoading from './components/Loadings/FullscreenLoading';
 
 const AppDrawer = createDrawerNavigator();

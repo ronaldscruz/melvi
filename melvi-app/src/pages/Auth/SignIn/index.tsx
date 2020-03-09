@@ -2,20 +2,20 @@ import React, { useState } from 'react';
 import { AsyncStorage } from 'react-native';
 
 // Types
-import { SignInNavigation } from '../../types/Auth';
+import { SignInNavigation } from '../../../types/Auth';
 
 // Constants
-import { MIDNIGHT_BLUE } from '../../constants/colors';
+import { MIDNIGHT_BLUE } from '../../../constants/colors';
 
 // GraphQL
 import { useLazyQuery, useApolloClient } from '@apollo/react-hooks';
-import { SIGN_IN } from '../../graphql/queries/User';
+import { SIGN_IN } from '../../../graphql/queries/User';
 
 // Local components
-import CenteredContentView from '../../components/Display/CenteredContentView';
-import DefaultInput from '../../components/Form/DefaultInput';
-import DefaultButton from '../../components/Buttons/DefaultButton';
-import Logo from '../../components/Display/Logo';
+import CenteredContentView from '../../../components/Display/CenteredContentView';
+import DefaultInput from '../../../components/Form/DefaultInput';
+import DefaultButton from '../../../components/Buttons/DefaultButton';
+import Logo from '../../../components/Display/Logo';
 
 type SignInProps = {
   navigation: SignInNavigation;
