@@ -21,5 +21,5 @@ export const RoadmapsTitleWrapper = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 18px 2px 12px;
+  margin: 18px 4px 12px;
 `;

@@ -14,7 +14,7 @@ import { setContext } from 'apollo-link-context';
 import { getAuthToken } from './src/utils/token';
 
 const httpLink = createHttpLink({
-  uri: 'http://192.168.0.47:4500/graphql',
+  uri: 'http://192.168.1.8:4500/graphql',
 });
 
 const cache = new InMemoryCache();

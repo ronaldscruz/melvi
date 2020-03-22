@@ -50,7 +50,7 @@ const CardWithList: React.FC<CardWithListProps> = ({
           </ListItem>
         ))}
       </Card>
-      {listButton && (
+      {listButton?.title && (
         <ListButtonWrapper>
           <DefaultButton
             gapTop

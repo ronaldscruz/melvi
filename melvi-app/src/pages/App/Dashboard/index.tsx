@@ -53,6 +53,18 @@ const Dashboard: React.FC<DashboardProps> = ({ navigation }) => {
   // If anything is loading returns the fullscreeen loading
   if (userLoading || roadmapsLoading) return <FullscreenLoading />;
 
+  const roadmapsListLength = roadmapsData?.roadmaps?.length;
+
+  const roadmapsListButton = {
+    listButton: {
+      title: roadmapsListLength >= 3 ? 'View more' : 'Create roadmap',
+      action:
+        roadmapsListLength >= 3
+          ? (): void => alert('View more...')
+          : (): void => alert('Create roadmap...'),
+    },
+  };
+
   return (
     <>
       <Header pageTitle="Dashboard" openMenuAction={navigation.openDrawer} />
@@ -82,16 +94,13 @@ const Dashboard: React.FC<DashboardProps> = ({ navigation }) => {
             size={32}
           />
         </RoadmapsTitleWrapper>
-        {roadmapsData?.roadmaps.length > 0 ? (
+        {roadmapsListLength > 0 ? (
           <CardWithList
             keyExtractor="title"
             listData={roadmapsData.roadmaps}
-            listButton={{
-              title: 'View more',
-              action: (): void => alert('in progress...'),
-            }}
             text="title"
             limit={3}
+            {...roadmapsListButton}
           />
         ) : (
           <CardEmptyData
