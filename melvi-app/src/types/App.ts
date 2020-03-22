@@ -12,9 +12,15 @@ import { DrawerNavigationProp } from '@react-navigation/drawer';
 
 type DefaultAppNavigationProps = {
   Dashboard: undefined;
+  Roadmaps: undefined;
 };
 
 export type DashboardNavigation = DrawerNavigationProp<
   DefaultAppNavigationProps,
   'Dashboard'
+>;
+
+export type RoadmapsNavigation = DrawerNavigationProp<
+  DefaultAppNavigationProps,
+  'Roadmaps'
 >;

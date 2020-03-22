@@ -41,7 +41,7 @@ const Dashboard: React.FC<DashboardProps> = ({ navigation }) => {
     ROADMAPS,
     {
       variables: { userId: +userData?.me?.id },
-      pollInterval: 3600,
+      pollInterval: 10000,
     },
   );
 
@@ -54,16 +54,6 @@ const Dashboard: React.FC<DashboardProps> = ({ navigation }) => {
   if (userLoading || roadmapsLoading) return <FullscreenLoading />;
 
   const roadmapsListLength = roadmapsData?.roadmaps?.length;
-
-  const roadmapsListButton = {
-    listButton: {
-      title: roadmapsListLength >= 3 ? 'View more' : 'Create roadmap',
-      action:
-        roadmapsListLength >= 3
-          ? (): void => alert('View more...')
-          : (): void => alert('Create roadmap...'),
-    },
-  };
 
   return (
     <>
@@ -100,7 +90,7 @@ const Dashboard: React.FC<DashboardProps> = ({ navigation }) => {
             listData={roadmapsData.roadmaps}
             text="title"
             limit={3}
-            {...roadmapsListButton}
+            onCardPress={() => navigation.navigate('Roadmaps')}
           />
         ) : (
           <CardEmptyData
