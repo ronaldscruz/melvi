@@ -68,8 +68,8 @@ const Dashboard: React.FC<DashboardProps> = ({ navigation }) => {
 
   const roadmapsListButton = {
     listButton: {
-      title: roadmaps.length > 0 ? 'View more' : null,
-      action: roadmaps.length > 0 ? (): void => navigation.navigate('Roadmaps') : null,
+      title: roadmaps?.length > 0 ? 'View more' : null,
+      action: roadmaps?.length > 0 ? (): void => navigation.navigate('Roadmaps') : null,
     },
   };
 

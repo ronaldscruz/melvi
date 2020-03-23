@@ -14,6 +14,7 @@ import { SIGN_IN } from '../../../graphql/queries/User';
 // Local components
 import CenteredContentView from '../../../components/Display/CenteredContentView';
 import DefaultInput from '../../../components/Form/DefaultInput';
+import Input from '../../../components/Form/Input';
 import DefaultButton from '../../../components/Buttons/DefaultButton';
 import Logo from '../../../components/Display/Logo';
 
@@ -62,6 +63,7 @@ const SignIn: React.FC<SignInProps> = () => {
         onChangeText={(p: string): void => setPassword(p)}
         value={password}
       />
+      <Input />
       <DefaultButton
         title="Sign in"
         iconName="chevron-right"
