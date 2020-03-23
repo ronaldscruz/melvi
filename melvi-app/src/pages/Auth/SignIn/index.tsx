@@ -48,26 +48,24 @@ const SignIn: React.FC<SignInProps> = () => {
   return (
     <CenteredContentView bgColor={MIDNIGHT_BLUE}>
       <Logo size="medium" />
-      <DefaultInput
-        placeholder="E-mail"
+      <Input
+        placeholder="Email"
         autoCapitalize="none"
-        iconName="envelope"
-        gapBottom={true}
+        iconLeft="envelope"
         onChangeText={(e: string): void => setEmail(e)}
         value={email}
       />
-      <DefaultInput
+      <Input
         placeholder="Password"
-        iconName="key"
-        password
+        iconLeft="key"
+        password={true}
+        secureTextEntry={true}
         onChangeText={(p: string): void => setPassword(p)}
         value={password}
       />
-      <Input />
       <DefaultButton
         title="Sign in"
         iconName="chevron-right"
-        gapTop
         fulfill
         disabled={signInLoading}
         loading={signInLoading}
