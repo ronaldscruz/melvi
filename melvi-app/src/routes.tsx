@@ -20,6 +20,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 // Pages rendered in navigators
 import SignIn from './pages/Auth/SignIn';
 import Dashboard from './pages/App/Dashboard';
+import Roadmaps from './pages/App/Roadmaps';
 import FullscreenLoading from './components/Loadings/FullscreenLoading';
 
 const AppDrawer = createDrawerNavigator();
@@ -31,6 +32,7 @@ const AuthStack = createStackNavigator();
 const App: React.FC = () => (
   <AppDrawer.Navigator initialRouteName="Dashboard">
     <AppDrawer.Screen name="Dashboard" component={Dashboard} />
+    <AppDrawer.Screen name="Roadmaps" component={Roadmaps} />
   </AppDrawer.Navigator>
 );
 
