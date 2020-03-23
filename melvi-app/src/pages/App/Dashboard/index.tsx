@@ -1,9 +1,20 @@
 import React from 'react';
 import { DashboardNavigation } from '../../../types/App';
 
+// Types
+import Roadmap from '../../../types/Roadmap';
+import User from '../../../types/User';
+
 // Colors & Style
-import { GREEN_SEA } from '../../../constants/colors';
-import { DashboardWrapper, UserGreeting, Welcome, RoadmapsTitleWrapper } from './styled';
+import {
+  DashboardWrapper,
+  TopContent,
+  UserGreeting,
+  Welcome,
+  RoadmapsTitleWrapper,
+  LogoutButton,
+  LogoutButtonIcon,
+} from './styled';
 
 // Apollo & query stuff
 import { useQuery, useApolloClient } from 'react-apollo';
@@ -17,7 +28,6 @@ import { Avatar } from 'react-native-elements';
 import { Title, Text } from '../../../components/Text';
 import Header from '../../../components/Display/Header';
 import RoundedButtonWithIcon from '../../../components/Buttons/RoundedButtonWithIcon';
-import DefaultButton from '../../../components/Buttons/DefaultButton';
 import CardWithList from '../../../components/Cards/CardWithList';
 import CardEmptyData from '../../../components/Cards/CardEmptyData';
 import FullscreenLoading from '../../../components/Loadings/FullscreenLoading';
@@ -37,6 +47,8 @@ const Dashboard: React.FC<DashboardProps> = ({ navigation }) => {
   const client = useApolloClient();
 
   const { data: userData, loading: userLoading } = useQuery(ME);
+  const me: User = userData?.me;
+
   const { data: roadmapsData, loading: roadmapsLoading, error: roadmapsError } = useQuery(
     ROADMAPS,
     {
@@ -44,38 +56,43 @@ const Dashboard: React.FC<DashboardProps> = ({ navigation }) => {
       pollInterval: 10000,
     },
   );
+  const roadmaps: Roadmap[] = roadmapsData?.roadmaps;
 
   roadmapsError && console.warn(roadmapsError);
 
   // User session is no more valid
-  if (!userLoading && !userData?.me?.id) removeAuthToken(client);
+  if (!userLoading && !me?.id) removeAuthToken(client);
 
   // If anything is loading returns the fullscreeen loading
   if (userLoading || roadmapsLoading) return <FullscreenLoading />;
 
-  const roadmapsListLength = roadmapsData?.roadmaps?.length;
+  const roadmapsListButton = {
+    listButton: {
+      title: roadmaps.length > 0 ? 'View more' : null,
+      action: roadmaps.length > 0 ? (): void => navigation.navigate('Roadmaps') : null,
+    },
+  };
 
   return (
     <>
-      <Header pageTitle="Dashboard" openMenuAction={navigation.openDrawer} />
+      <Header pageTitle="Dashboard" menuAction={navigation.openDrawer} />
       <DashboardWrapper>
-        <UserGreeting>
-          <Avatar
-            size={52}
-            rounded
-            title={userData?.me?.fullName ? getTextInitials(userData.me.fullName) : '..'}
-          />
-          <Welcome>
-            <Text> Welcome, </Text>
-            <Text bold>{userData?.me?.fullName} </Text>
-          </Welcome>
-        </UserGreeting>
-        {/* <DefaultButton
-          title="Logout"
-          gapTop={true}
-          fulfill={false}
-          onPress={(): Promise<boolean> => removeAuthToken(client)}
-        /> */}
+        <TopContent>
+          <UserGreeting>
+            <Avatar
+              size={52}
+              rounded
+              title={me?.fullName ? getTextInitials(me.fullName) : '..'}
+            />
+            <Welcome>
+              <Text> Welcome, </Text>
+              <Text bold>{me?.fullName} </Text>
+            </Welcome>
+          </UserGreeting>
+          <LogoutButton onPress={(): Promise<boolean> => removeAuthToken(client)}>
+            <LogoutButtonIcon name="sign-out-alt" />
+          </LogoutButton>
+        </TopContent>
         <RoadmapsTitleWrapper>
           <Title> Your roadmaps </Title>
           <RoundedButtonWithIcon
@@ -84,13 +101,13 @@ const Dashboard: React.FC<DashboardProps> = ({ navigation }) => {
             size={32}
           />
         </RoadmapsTitleWrapper>
-        {roadmapsListLength > 0 ? (
+        {roadmaps?.length > 0 ? (
           <CardWithList
             keyExtractor="title"
-            listData={roadmapsData.roadmaps}
+            listData={roadmaps}
             text="title"
             limit={3}
-            onCardPress={() => navigation.navigate('Roadmaps')}
+            {...roadmapsListButton}
           />
         ) : (
           <CardEmptyData
