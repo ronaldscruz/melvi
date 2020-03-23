@@ -30,7 +30,6 @@ type CardWithListProps = {
  * @param text Which property from the objects inside array will be the title of list item?
  * @param limit List size limit
  * @param listButton If passed, CardWithList will display a button below the list
- * @param onCardPress If passed, executes an action when card is pressed
  * @param dark Dark theme
  */
 const CardWithList: React.FC<CardWithListProps> = ({
@@ -39,13 +38,12 @@ const CardWithList: React.FC<CardWithListProps> = ({
   text,
   limit,
   listButton,
-  onCardPress,
   dark = true,
 }) => {
   const selectedListData = limit ? listData.slice(0, limit) : listData;
 
   return (
-    <TouchableOpacity onPress={() => onCardPress() || {}}>
+    <>
       <Card dark={dark}>
         {selectedListData.map(item => (
           <ListItem key={item[keyExtractor]}>
@@ -63,7 +61,7 @@ const CardWithList: React.FC<CardWithListProps> = ({
           />
         </ListButtonWrapper>
       )}
-    </TouchableOpacity>
+    </>
   );
 };
 
