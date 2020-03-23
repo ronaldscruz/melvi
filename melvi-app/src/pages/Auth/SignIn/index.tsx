@@ -24,7 +24,7 @@ type SignInProps = {
 /**
  * Initial sign in page
  */
-const SignIn: React.FC<SignInProps> = props => {
+const SignIn: React.FC<SignInProps> = () => {
   const client = useApolloClient();
 
   const [email, setEmail] = useState('giorno@email.com');
