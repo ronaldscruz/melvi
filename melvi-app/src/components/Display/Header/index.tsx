@@ -3,16 +3,17 @@ import { HeaderWrapper, Text, MenuButton, MenuIcon } from './styled';
 
 type HeaderProps = {
   pageTitle: string;
-  openMenuAction?: Function;
+  main?: boolean;
+  menuAction?: Function;
 };
 
-const Header: React.FC<HeaderProps> = props => {
+const Header: React.FC<HeaderProps> = ({ menuAction, main = true, pageTitle }) => {
   return (
     <HeaderWrapper>
-      <MenuButton onPress={props.openMenuAction}>
-        <MenuIcon name="bars" />
+      <MenuButton onPress={menuAction}>
+        <MenuIcon name={main ? 'bars' : 'arrow-left'} />
       </MenuButton>
-      <Text> {props.pageTitle} </Text>
+      <Text> {pageTitle} </Text>
     </HeaderWrapper>
   );
 };
