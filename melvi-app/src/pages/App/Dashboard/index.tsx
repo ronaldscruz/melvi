@@ -85,7 +85,7 @@ const Dashboard: React.FC<DashboardProps> = ({ navigation }) => {
               title={me?.fullName ? getTextInitials(me.fullName) : '..'}
             />
             <Welcome>
-              <Text> Welcome, </Text>
+              <Text> Welcome </Text>
               <Text bold>{me?.fullName} </Text>
             </Welcome>
           </UserGreeting>

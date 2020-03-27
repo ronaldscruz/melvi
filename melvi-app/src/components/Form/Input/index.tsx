@@ -29,17 +29,19 @@ interface InputProps extends TextInputProps {
  * @param password Is this field a password?
  */
 const Input: React.FC<InputProps> = props => {
-  const [secure, setSecure] = useState(!!props.password);
+  const [secure, setSecure] = useState(props.secureTextEntry);
+
+  console.log('secure:', secure);
 
   return (
     <InputWrapper width={props.width} bgColor={props.bgColor} rounded={props.rounded}>
       {props.iconLeft && <IconLeft name={props.iconLeft} />}
 
-      <CustomInput secureTextEntry={secure} {...props} />
+      <CustomInput {...props} secureTextEntry={secure} />
 
       {props.password && (
-        <PasswordIconWrapper onPress={() => setSecure(false)}>
-          <PasswordIcon name="eye" />
+        <PasswordIconWrapper onPress={(): void => setSecure(!secure)}>
+          <PasswordIcon name={secure ? 'eye' : 'eye-slash'} />
         </PasswordIconWrapper>
       )}
     </InputWrapper>

@@ -16,12 +16,9 @@ import { ME } from '../../../graphql/queries/User';
 // RN Components
 import { ScrollView } from 'react-native';
 
-// Lib Components
-import { ListItem } from 'react-native-elements';
-
 // Local components
 import Header from '../../../components/Display/Header';
-import { getTextInitials } from '../../../utils/user';
+import ListItem from '../../../components/Cards/ListItem';
 
 type RoadmapsProps = {
   navigation: RoadmapsNavigation;
@@ -34,7 +31,7 @@ const Roadmaps: React.FC<RoadmapsProps> = ({ navigation }) => {
   const { data: roadmapsData, loading: roadmapsLoading, error: roadmapsError } = useQuery(
     ROADMAPS,
     {
-      variables: { userId: +userData?.me?.id },
+      variables: { userId: me?.id },
       pollInterval: 10000,
     },
   );
@@ -54,9 +51,9 @@ const Roadmaps: React.FC<RoadmapsProps> = ({ navigation }) => {
             roadmaps.map(roadmap => (
               <ListItem
                 key={roadmap.id}
-                leftAvatar={{ title: getTextInitials(roadmap.title) }}
+                iconTitle={true}
                 title={roadmap.title}
-                subtitle={roadmap.description}
+                description={roadmap.description}
               />
             ))}
         </ScrollView>
