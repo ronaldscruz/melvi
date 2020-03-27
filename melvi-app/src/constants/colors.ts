@@ -1,6 +1,6 @@
 export const MIDNIGHT_BLUE = 'rgba(44, 62, 80,1.0)';
 export const WET_ASPHALT = 'rgba(52, 73, 94,1.0)';
-export const WET_ASPHALT_DARK = 'rgba(52, 73, 94,0.6)';
+export const WET_ASPHALT_DARK = 'rgba(41,	58,	75, 1.0)';
 export const WISTERIA = 'rgba(142, 68, 173,1.0)';
 export const AMETHYST = 'rgba(155, 89, 182,1.0)';
 export const BELIZE_ROLE = 'rgba(41, 128, 185,1.0)';

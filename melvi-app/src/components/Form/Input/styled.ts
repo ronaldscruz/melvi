@@ -12,7 +12,7 @@ export const InputWrapper = styled.View`
   width: ${(props): string => props.width || '100%'};
   height: 44px;
   background-color: ${(props): string => props.bgColor || WET_ASPHALT};
-  border-radius: ${(props): string => (props.rounded ? '40px' : '4px')};
+  border-radius: ${(props): string => (props.rounded ? '48px' : '4px')};
 `;
 
 export const IconLeft = styled(Icon)`

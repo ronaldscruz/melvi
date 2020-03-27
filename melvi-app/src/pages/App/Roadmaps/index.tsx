@@ -19,6 +19,8 @@ import { ScrollView } from 'react-native';
 // Local components
 import Header from '../../../components/Display/Header';
 import ListItem from '../../../components/Cards/ListItem';
+import Input from '../../../components/Form/Input';
+import { MIDNIGHT_BLUE } from '../../../constants/colors';
 
 type RoadmapsProps = {
   navigation: RoadmapsNavigation;
@@ -31,7 +33,7 @@ const Roadmaps: React.FC<RoadmapsProps> = ({ navigation }) => {
   const { data: roadmapsData, loading: roadmapsLoading, error: roadmapsError } = useQuery(
     ROADMAPS,
     {
-      variables: { userId: me?.id },
+      variables: { userId: +me?.id },
       pollInterval: 10000,
     },
   );
@@ -46,8 +48,9 @@ const Roadmaps: React.FC<RoadmapsProps> = ({ navigation }) => {
       />
       <RoadmapsPage>
         <RoadmapsTitle>Your roadmaps</RoadmapsTitle>
+        <Input rounded bgColor={MIDNIGHT_BLUE} autoCapitalize="none" iconLeft="search" />
         <ScrollView>
-          {roadmaps.length > 0 &&
+          {roadmaps?.length > 0 &&
             roadmaps.map(roadmap => (
               <ListItem
                 key={roadmap.id}

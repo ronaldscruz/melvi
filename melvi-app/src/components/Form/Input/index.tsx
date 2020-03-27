@@ -31,8 +31,6 @@ interface InputProps extends TextInputProps {
 const Input: React.FC<InputProps> = props => {
   const [secure, setSecure] = useState(props.secureTextEntry);
 
-  console.log('secure:', secure);
-
   return (
     <InputWrapper width={props.width} bgColor={props.bgColor} rounded={props.rounded}>
       {props.iconLeft && <IconLeft name={props.iconLeft} />}
